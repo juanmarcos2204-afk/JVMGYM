@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="JVMGYM.Datos/JVMGYM.Datos.csproj" Id="9c855c0f-033d-485b-a177-01bb889d9892" />
   <Project Path="JVMGYM.Entidades/JVMGYM.Entidades.csproj" />
 </Solution>

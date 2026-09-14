@@ -7,6 +7,29 @@
         private int _idMembresia;
         private Membresias _membresias = null!;
         private Clientes _clientes = null!;
+        private DateOnly _inicio;
+        private DateOnly _fin;
+        private bool _activo;
+
+        public bool Activo
+        {
+            get { return _activo; }
+            set { _activo = value; }
+        }
+
+
+        public DateOnly Fin
+        {
+            get { return _fin; }
+            set { _fin = value; }
+        }
+
+        public DateOnly Inicio
+        {
+            get { return _inicio; }
+            set { _inicio = value; }
+        }
+
 
         public Membresias Membresias
         {
