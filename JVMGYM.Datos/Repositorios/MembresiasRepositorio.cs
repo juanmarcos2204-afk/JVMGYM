@@ -13,28 +13,41 @@ namespace JVMGYM.Datos.Repositorios
         {
             _context = context;
         }
+
+        public void Agregar(Membresias membresias)
+        {
+            _context.Add(membresias);
+            _context.SaveChanges();
+        }
+
+        public void Editar(Membresias membresias)
+        {
+            var membresiaEnDb = _context.Membresias.Find(membresias.IdMembresia);
+            if (membresiaEnDb is null) throw new KeyNotFoundException($"No se encuentra un cliente con ID: {membresias.IdMembresia}");
+            membresiaEnDb.Tipo = membresias.Tipo;
+            membresiaEnDb.Precio = membresias.Precio;
+
+            _context.SaveChanges();
+        }
+
+        public void Eliminar(int membresiaId)
+        {
+            var membresiaEnDb = _context.Membresias.Find(membresiaId);
+            if (membresiaEnDb is null) throw new KeyNotFoundException($"No se encuentra un cliente con ID: {membresiaId}");
+            _context.Membresias.Remove(membresiaEnDb);
+            _context.SaveChanges();
+
+        }
+
+        public Membresias? ObtenerPorId(int id)
+        {
+            return _context.Membresias
+                .FirstOrDefault(m => m.IdMembresia == id);
+        }
+
         public List<Membresias> ObtenerTodos()
         {
             return _context.Membresias.ToList();
-        }
-        public Membresias? ObtenerPorId(int id)
-        {
-            return _context.Membresias.Find(id);
-        }
-        public void Agregar(Membresias membresias)
-        {
-            _context.Membresias.Add(membresias);
-            _context.SaveChanges();
-        }
-        public void Editar(Membresias membresias)
-        {
-            _context.Membresias.Update(membresias);
-            _context.SaveChanges();
-        }
-        public void Eliminar(Membresias membresias)
-        {
-            _context.Membresias.Remove(membresias);
-            _context.SaveChanges();
         }
     }
 }

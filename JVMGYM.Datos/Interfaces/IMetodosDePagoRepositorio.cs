@@ -11,6 +11,7 @@ namespace JVMGYM.Datos.Interfaces
         MetodosDePago ObtenerPorId(int id);
         void Agregar(MetodosDePago metodosDePago);
         void Editar(MetodosDePago metodosDePago);
-        void Eliminar(MetodosDePago metodosDePago);
+        //ELIMINAMOS REGISTROS POR ID
+        void Eliminar(int metodosDePagoId);
     }
 }

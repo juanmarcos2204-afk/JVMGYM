@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JVMGYM.Servicio.Dtos.Clientes
 {
-    public class ClientesListDto
+    public class ClienteEditDto
     {
         public int IdCliente { get; set; }
         public string Nombre { get; set; } = null!;
