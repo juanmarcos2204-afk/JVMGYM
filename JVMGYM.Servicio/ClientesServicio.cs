@@ -1,34 +1,52 @@
 ﻿using JVMGYM.Datos.Interfaces;
 using JVMGYM.Entidades;
+using JVMGYM.Servicio.Dtos.Clientes;
+using JVMGYM.Servicio.Mapeadores;
 namespace JVMGYM.Servicio
 {
-    public class ClientesServicio : IClientesRepositorio
+    public class ClientesServicio
     {
-        public void Agregar(Entidades.Clientes clientes)
+        private readonly IClientesRepositorio _clienteRepositorio;
+        public ClientesServicio(IClientesRepositorio clientesRepositorio)
         {
-            
+            _clienteRepositorio = clientesRepositorio;
         }
-
-        public void Editar(Entidades.Clientes clientes)
+        public void Agregar (ClienteCreateDto clienteCreateDto)
         {
-            throw new NotImplementedException();
+            Clientes clientes = clienteCreateDto.ToEntidad();
+            try
+            {
+                _clienteRepositorio.Agregar(clientes);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-
-        public void Eliminar(Entidades.Clientes clientes)
+        public void Editar (ClienteEditDto clienteEditDto)
         {
-            throw new NotImplementedException();
+            Clientes clientes = clienteEditDto.ToEntidad();
+            _clienteRepositorio.Editar(clientes);
         }
-
-        public Entidades.Clientes ObtenerPorId(int id)
+        public void Eliminar (int clienteId)
         {
-            throw new NotImplementedException();
+            var cliente = _clienteRepositorio.ObtenerPorId(clienteId);
+            if (cliente is null)
+            {
+                throw new KeyNotFoundException($"No se encontró un cliente con el ID {clienteId}");
+            }
+            try
+            {
+                _clienteRepositorio.Eliminar(clienteId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception (ex.Message);
+            }
         }
-
-        public List<Entidades.Clientes> ObtenerTodos()
+        public List<ClientesListDto> ObtenerTodos()
         {
-            throw new NotImplementedException();
+            return _clienteRepositorio.ObtenerTodos().Select(c => c.ToListDto()).ToList();
         }
     }
-
-
 }
