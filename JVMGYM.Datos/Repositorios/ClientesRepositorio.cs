@@ -2,54 +2,36 @@
 using JVMGYM.Entidades;
 namespace JVMGYM.Datos.Repositorios
 {
-    public class ClientesRepositorio:IClientesRepositorio
+    public class ClientesRepositorio : IClientesRepositorio
     {
+        private readonly AppDbContext _context;
+        public ClientesRepositorio(AppDbContext context)
+        {
+            _context = context;
+        }
         public List<Clientes> ObtenerTodos()
         {
-            using (var context = new AppDbContext())
-            {
-                return context.Clientes.ToList();
-            }
+            return _context.Clientes.ToList();
         }
 
         public Clientes ObtenerPorId(int id)
         {
-            using (var context = new AppDbContext())
-            {
-                return context.Clientes.Find(id);
-            }
+            return _context.Clientes.Find(id);
         }
         public void Agregar(Clientes clientes)
         {
-            using (var context = new AppDbContext())
-            {
-                context.Clientes.Add(clientes);
-                context.SaveChanges();
-            }
+            _context.Clientes.Add(clientes);
+            _context.SaveChanges();
         }
         public void Editar(Clientes clientes)
         {
-            using (var context = new AppDbContext())
-            {
-                context.Clientes.Add(clientes);
-                context.SaveChanges();
-            }
-        }
-        public void Actualizar(Clientes clientes)
-        {
-            using (var context = new AppDbContext())
-            {
-                context.Clientes.Update(clientes);
-                context.SaveChanges();
-            }
+            _context.Clientes.Update(clientes);
+            _context.SaveChanges();
         }
         public void Eliminar(Clientes clientes)
         {
-            using (var context = new AppDbContext())
-            {
-                context.Clientes.Remove(clientes);
-                context.SaveChanges();
-            }
+            _context.Clientes.Remove(clientes);
+            _context.SaveChanges();
         }
     }
 }

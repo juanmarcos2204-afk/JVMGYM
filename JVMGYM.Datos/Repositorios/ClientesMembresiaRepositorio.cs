@@ -8,12 +8,14 @@ namespace JVMGYM.Datos.Repositorios
 {
     public class ClientesMembresiaRepositorio:IClientesMembresiaRepositorio
     {
+        private readonly AppDbContext _context;
+        public ClientesMembresiaRepositorio(AppDbContext context)
+        {
+            _context = context;
+        }
         public List<ClientesMembresia> ObtenerTodos()
         {
-            using (var context = new AppDbContext())
-            {
-                return context.ClientesMembresias.ToList();
-            }
+            return _context.ClientesMembresias.ToList();
         }
     }
 }
