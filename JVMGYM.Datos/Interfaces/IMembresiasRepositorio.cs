@@ -8,6 +8,8 @@ namespace JVMGYM.Datos.Interfaces
         Membresias? ObtenerPorId(int id);
         void Agregar(Membresias membresias);
         void Editar(Membresias membresias);
-        void Eliminar(Membresias membresias);
+
+        //ELIMINAMOS REGISTROS POR ID
+        void Eliminar(int membresiaId);
     }
 }

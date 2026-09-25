@@ -46,7 +46,7 @@
             }
         }
 
-        public int Membresia
+        public int IdMembresia
         {
             get { return _idMembresia; }
             set

@@ -19,7 +19,7 @@
         }
 
 
-        public int MetodoPago
+        public int IdMetodoPago
         {
             get { return _idMetodoPago; }
             set
