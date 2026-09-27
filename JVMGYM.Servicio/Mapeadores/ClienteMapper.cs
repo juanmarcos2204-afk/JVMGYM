@@ -41,10 +41,7 @@ namespace JVMGYM.Servicio.Mapeadores
                 Nombre = clientes.Nombre,
                 Apellido = clientes.Apellido,
                 DNI = clientes.DNI,
-                Telefono = clientes.Telefono,
-                Domicilio = clientes.Domicilio,
                 FechaAlta = clientes.FechaAlta
-
             };
         }
     }

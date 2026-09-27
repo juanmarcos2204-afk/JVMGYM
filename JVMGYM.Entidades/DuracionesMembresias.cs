@@ -2,7 +2,7 @@
 {
     public class DuracionesMembresias
     {
-        private int _duracionMembresia;
+        private int _idDuracionMembresia;
         private string _nombre = null!;
 
         public string Nombre
@@ -18,16 +18,16 @@
             }
         }
 
-        public int DuracionMembresia
+        public int IdDuracionMembresia
         {
-            get { return _duracionMembresia; }
+            get { return _idDuracionMembresia; }
             set
             {
                 if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException("El Id no puede ser igual o menor a cero");
                 }
-                _duracionMembresia = value;
+                _idDuracionMembresia = value;
             }
         }
 

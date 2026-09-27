@@ -2,4 +2,5 @@
   <Project Path="JVMGYM.Datos/JVMGYM.Datos.csproj" Id="9c855c0f-033d-485b-a177-01bb889d9892" />
   <Project Path="JVMGYM.Entidades/JVMGYM.Entidades.csproj" />
   <Project Path="JVMGYM.Servicio/JVMGYM.Servicio.csproj" Id="e2e7320e-6a68-4afc-9139-2d7b3876b997" />
+  <Project Path="JVMGYM.Windows/JVMGYM.Windows.csproj" Id="55553330-998a-4fdc-9349-7d95702bc3c1" />
 </Solution>
