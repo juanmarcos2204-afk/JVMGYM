@@ -8,9 +8,9 @@ namespace JVMGYM.Servicio.Mapeadores
 {
     public static class ClienteMapper
     {
-        public static Clientes ToEntidad(this ClienteCreateDto clienteCreateDto)
+        public static Cliente ToEntidad(this ClienteCreateDto clienteCreateDto)
         {
-            return new Clientes
+            return new Cliente
             {
                 Nombre = clienteCreateDto.Nombre,
                 Apellido = clienteCreateDto.Apellido,
@@ -20,9 +20,9 @@ namespace JVMGYM.Servicio.Mapeadores
                 FechaAlta = clienteCreateDto.FechaAlta
             };
         }
-        public static Clientes ToEntidad(this ClienteEditDto clienteEditDto)
+        public static Cliente ToEntidad(this ClienteEditDto clienteEditDto)
         {
-            return new Clientes
+            return new Cliente
             {
                 IdCliente = clienteEditDto.IdCliente,
                 Nombre = clienteEditDto.Nombre,
@@ -33,7 +33,7 @@ namespace JVMGYM.Servicio.Mapeadores
                 FechaAlta = clienteEditDto.FechaAlta
             };
         }
-        public static ClientesListDto ToListDto(this Clientes clientes)
+        public static ClientesListDto ToListDto(this Cliente clientes)
         {
             return new ClientesListDto
             {

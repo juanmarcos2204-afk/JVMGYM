@@ -5,8 +5,8 @@
         private int _idClienteMembresia;
         private int _idCliente;
         private int _idMembresia;
-        private Membresias _membresias = null!;
-        private Clientes _clientes = null!;
+        private Membresia _membresias = null!;
+        private Cliente _clientes = null!;
         private DateOnly _inicio;
         private DateOnly _fin;
         private bool _activo;
@@ -31,7 +31,7 @@
         }
 
 
-        public Membresias Membresias
+        public Membresia Membresias
         {
             get { return _membresias; }
             set {
@@ -53,7 +53,7 @@
                 _idMembresia = value; }
         }
 
-        public Clientes Cliente
+        public Cliente Cliente
         {
             get { return _clientes = null!; }
             set

@@ -4,10 +4,10 @@ namespace JVMGYM.Datos.Interfaces
 {
     public interface IMembresiasRepositorio
     {
-        List<Membresias> ObtenerTodos();
-        Membresias? ObtenerPorId(int id);
-        void Agregar(Membresias membresias);
-        void Editar(Membresias membresias);
+        List<Membresia> ObtenerTodos();
+        Membresia? ObtenerPorId(int id);
+        void Agregar(Membresia membresias);
+        void Editar(Membresia membresias);
 
         //ELIMINAMOS REGISTROS POR ID
         void Eliminar(int membresiaId);

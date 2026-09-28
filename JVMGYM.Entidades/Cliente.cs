@@ -1,6 +1,6 @@
 ﻿namespace JVMGYM.Entidades
 {
-    public class Clientes
+    public class Cliente
     {
         private int _Idcliente;
         private string _nombre = null!;

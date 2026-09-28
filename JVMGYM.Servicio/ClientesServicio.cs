@@ -13,7 +13,7 @@ namespace JVMGYM.Servicio
         }
         public void Agregar (ClienteCreateDto clienteCreateDto)
         {
-            Clientes clientes = clienteCreateDto.ToEntidad();
+            Cliente clientes = clienteCreateDto.ToEntidad();
             try
             {
                 _clienteRepositorio.Agregar(clientes);
@@ -25,7 +25,7 @@ namespace JVMGYM.Servicio
         }
         public void Editar (ClienteEditDto clienteEditDto)
         {
-            Clientes clientes = clienteEditDto.ToEntidad();
+            Cliente clientes = clienteEditDto.ToEntidad();
             _clienteRepositorio.Editar(clientes);
         }
         public void Eliminar (int clienteId)

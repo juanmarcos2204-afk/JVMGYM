@@ -7,10 +7,10 @@ namespace JVMGYM.Datos.Interfaces
 {
     public interface IPagosRepositorio
     {
-        List<Pagos> ObtenerTodos();
-        Pagos? ObtenerPorId(int id);
-        void Agregar(Pagos pagos);
-        void Editar(Pagos pagos);
+        List<Pago> ObtenerTodos();
+        Pago? ObtenerPorId(int id);
+        void Agregar(Pago pagos);
+        void Editar(Pago pagos);
         void Eliminar(int pagosId);
 
     }

@@ -14,13 +14,13 @@ namespace JVMGYM.Datos.Repositorios
             _context = context;
         }
 
-        public void Agregar(Pagos pagos)
+        public void Agregar(Pago pagos)
         {
             _context.Add(pagos);
             _context.SaveChanges();
         }
 
-        public void Editar(Pagos pagos)
+        public void Editar(Pago pagos)
         {
             var pagosEnDb = _context.Pagos.Find(pagos.IdPago);
             if (pagosEnDb is null) throw new KeyNotFoundException($"No se encuentra un pago con ID: {pagos.IdPago}");
@@ -39,14 +39,14 @@ namespace JVMGYM.Datos.Repositorios
             _context.SaveChanges();
         }
 
-        public Pagos? ObtenerPorId(int id)
+        public Pago? ObtenerPorId(int id)
         {
             return _context.Pagos
                     .FirstOrDefault(p => p.IdPago == id);
 
         }
 
-        public List<Pagos> ObtenerTodos()
+        public List<Pago> ObtenerTodos()
         {
             return _context.Pagos .ToList();
         }
