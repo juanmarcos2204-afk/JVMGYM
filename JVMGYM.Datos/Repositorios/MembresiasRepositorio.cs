@@ -14,13 +14,13 @@ namespace JVMGYM.Datos.Repositorios
             _context = context;
         }
 
-        public void Agregar(Membresias membresias)
+        public void Agregar(Membresia membresias)
         {
             _context.Add(membresias);
             _context.SaveChanges();
         }
 
-        public void Editar(Membresias membresias)
+        public void Editar(Membresia membresias)
         {
             var membresiaEnDb = _context.Membresias.Find(membresias.IdMembresia);
             if (membresiaEnDb is null) throw new KeyNotFoundException($"No se encuentra un cliente con ID: {membresias.IdMembresia}");
@@ -39,13 +39,13 @@ namespace JVMGYM.Datos.Repositorios
 
         }
 
-        public Membresias? ObtenerPorId(int id)
+        public Membresia? ObtenerPorId(int id)
         {
             return _context.Membresias
                 .FirstOrDefault(m => m.IdMembresia == id);
         }
 
-        public List<Membresias> ObtenerTodos()
+        public List<Membresia> ObtenerTodos()
         {
             return _context.Membresias.ToList();
         }

@@ -1,6 +1,6 @@
 ﻿namespace JVMGYM.Entidades
 {
-    public class DuracionesMembresias
+    public class DuracionMembresia
     {
         private int _idDuracionMembresia;
         private string _nombre = null!;

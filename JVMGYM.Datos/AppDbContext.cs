@@ -8,12 +8,12 @@ namespace JVMGYM.Datos
 {
     public class AppDbContext:DbContext
     {
-        public DbSet<Clientes> Clientes { get; set; }
-        public DbSet<Membresias> Membresias { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Membresia> Membresias { get; set; }
         public DbSet<ClientesMembresia> ClientesMembresias { get; set; }
         public DbSet<MetodosDePago> MetodosDePagos { get; set; }
-        public DbSet<DuracionesMembresias> DuracionesMembresias { get; set; }
-        public DbSet<Pagos> Pagos { get; set; }
+        public DbSet<DuracionMembresia> DuracionesMembresias { get; set; }
+        public DbSet<Pago> Pagos { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
         {
             

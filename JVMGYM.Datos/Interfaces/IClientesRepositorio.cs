@@ -7,10 +7,10 @@ namespace JVMGYM.Datos.Interfaces
 {
     public interface IClientesRepositorio
     {
-        List<Clientes> ObtenerTodos();
-        Clientes? ObtenerPorId(int id);
-        void Agregar(Clientes clientes);
-        void Editar(Clientes clientes);
+        List<Cliente> ObtenerTodos();
+        Cliente? ObtenerPorId(int id);
+        void Agregar(Cliente clientes);
+        void Editar(Cliente clientes);
         void Eliminar(int clienteId);
     }
 }

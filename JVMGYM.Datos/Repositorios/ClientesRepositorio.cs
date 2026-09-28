@@ -10,13 +10,13 @@ namespace JVMGYM.Datos.Repositorios
             _context = context;
         }
 
-        public void Agregar(Clientes clientes)
+        public void Agregar(Cliente clientes)
         {
             _context.Add(clientes);
             _context.SaveChanges();
         }
 
-        public void Editar(Clientes clientes)
+        public void Editar(Cliente clientes)
         {
             var clienteEnDb = _context.Clientes.Find(clientes.IdCliente);
             if (clienteEnDb is null) throw new KeyNotFoundException($"No se encuentra un cliente con ID: {clientes.IdCliente}");
@@ -39,13 +39,13 @@ namespace JVMGYM.Datos.Repositorios
 
         }
 
-        public Clientes? ObtenerPorId(int id)
+        public Cliente? ObtenerPorId(int id)
         {
             return _context.Clientes
                 .FirstOrDefault(c => c.IdCliente == id);
         }
 
-        public List<Clientes> ObtenerTodos()
+        public List<Cliente> ObtenerTodos()
         {
             return _context.Clientes.ToList();
         }
