@@ -1,11 +1,11 @@
 ﻿namespace JVMGYM.Entidades
 {
-    public class Pagos
+    public class Pago
     {
         private int _idPago;
         private int _idCliente;
         private int _idMetodoPago;
-        private Clientes _clientes = null!;
+        private Cliente _clientes = null!;
         private MetodosDePago _metodosDePago = null!;
         private DateOnly _fecha;
 
@@ -28,7 +28,7 @@
             }
         }
 
-        public Clientes Clientes
+        public Cliente Clientes
         {
             get { return _clientes; }
             set
