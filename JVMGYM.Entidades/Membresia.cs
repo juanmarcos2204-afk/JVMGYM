@@ -5,21 +5,21 @@
         private int _idMembresia;
         private string _tipo = null!;
         private decimal _precio;
-        private int _idDuracion;
+        private int _idDuracionMembresia;
 
-        public int IdDuracion
+        public int IdDuracionMembresia
         {
-            get { return _idDuracion; }
+            get { return _idDuracionMembresia; }
             set
             {
                 if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException("El Id no puede ser igual o menor a cero");
                 }
-                _idDuracion = value;
+                _idDuracionMembresia = value;
             }
         }
-
+        public DuracionMembresia? DuracionMembresia { get; set; }
         public decimal Precio
         {
             get { return _precio; }

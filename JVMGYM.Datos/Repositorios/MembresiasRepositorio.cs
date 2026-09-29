@@ -1,5 +1,6 @@
 ﻿using JVMGYM.Datos.Interfaces;
 using JVMGYM.Entidades;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -47,7 +48,9 @@ namespace JVMGYM.Datos.Repositorios
 
         public List<Membresia> ObtenerTodos()
         {
-            return _context.Membresias.ToList();
+            return _context.Membresias
+                .Include(m => m.DuracionMembresia)
+                .ToList();
         }
     }
 }

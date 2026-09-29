@@ -1,5 +1,6 @@
 ﻿using JVMGYM.Servicio;
 using JVMGYM.Servicio.Dtos.Clientes;
+using JVMGYM.Servicio.Dtos.Membresias;
 using JVMGYM.Servicio.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,35 +12,36 @@ using System.Windows.Forms;
 
 namespace JVMGYM.Windows
 {
-    public partial class frmClientes : Form
+    public partial class frmMembresias : Form
     {
-        private readonly IClientesServicio _clientesServicio;
+        private readonly IMembresiaServicio _membresiaServicio;
         private BindingSource _bindingSource = new BindingSource();
-        public frmClientes(IClientesServicio clientesServicio)
+        public frmMembresias(IMembresiaServicio membresiaServicio)
         {
             InitializeComponent();
-            _clientesServicio = clientesServicio;
+            _membresiaServicio = membresiaServicio;
         }
-        private void frmClientes_Load(object sender, EventArgs e)
+
+        private void tsbCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void frmMembresias_Load(object sender, EventArgs e)
         {
             RecargarGrilla();
         }
 
         private void RecargarGrilla()
         {
-            var resultado = _clientesServicio.ObtenerTodos();
+            var resultado = _membresiaServicio.ObtenerTodos();
             MostrarDatosGrilla(resultado);
         }
 
-        private void MostrarDatosGrilla(List<ClientesListDto> resultado)
+        private void MostrarDatosGrilla(List<MembresiaListDto> resultado)
         {
             _bindingSource.DataSource = resultado;
             dgvDatos.DataSource = _bindingSource;
-        }
-
-        private void tsbCerrar_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

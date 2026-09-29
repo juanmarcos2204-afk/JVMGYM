@@ -13,6 +13,11 @@ namespace JVMGYM.Datos.EntityTypeConfigurations
         {
             builder.ToTable("Membresias");
             builder.HasKey(m => m.IdMembresia);
+            builder.HasOne(m => m.DuracionMembresia)
+                .WithMany(p => p.Membresias)
+                .HasForeignKey(m => m.IdDuracionMembresia)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }
