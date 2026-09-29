@@ -64,5 +64,18 @@ namespace JVMGYM.Servicio
         {
             return _membresiasRepositorio.ObtenerTodos().Select(m => m.ToListDto()).ToList();
         }
+
+        public MembresiaListDto ObtenerPorId(int membresiaId)
+        {
+            if (membresiaId <= 0)
+            {
+                throw new ArgumentOutOfRangeException("El Id del cliente no puede ser menor a cero");
+            }
+            var membresia = _membresiasRepositorio.ObtenerPorId(membresiaId);
+            if (membresia is null)
+                throw new KeyNotFoundException("No se encontró la membresia");
+            return membresia.ToListDto();
+
+        }
     }
 }
