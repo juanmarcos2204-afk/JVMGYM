@@ -1,10 +1,10 @@
 ﻿namespace JVMGYM.Entidades
 {
-    public class DuracioneMembresia
+    public class DuracionMembresia
     {
         private int _idDuracionMembresia;
         private string _nombre = null!;
-
+        public ICollection<Membresia> Membresias = new List<Membresia>();
         public string Nombre
         {
             get { return _nombre; }
@@ -30,6 +30,7 @@
                 _idDuracionMembresia = value;
             }
         }
+       
 
     }
 }

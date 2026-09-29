@@ -7,9 +7,9 @@ using System.Text;
 
 namespace JVMGYM.Datos.EntityTypeConfigurations
 {
-    public class DuracionMembresiaEntityTypeConfiguration : IEntityTypeConfiguration<DuracioneMembresia>
+    public class DuracionMembresiaEntityTypeConfiguration : IEntityTypeConfiguration<DuracionMembresia>
     {
-        public void Configure(EntityTypeBuilder<DuracioneMembresia> builder)
+        public void Configure(EntityTypeBuilder<DuracionMembresia> builder)
         {
             builder.ToTable("DuracionesMembresias");
             builder.HasKey(dm => dm.IdDuracionMembresia);

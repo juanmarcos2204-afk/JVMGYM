@@ -37,6 +37,7 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
+            btnMembresias = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -139,12 +140,24 @@
             label2.TabIndex = 0;
             label2.Text = "¡Bienvenido nuevamente!";
             // 
+            // btnMembresias
+            // 
+            btnMembresias.AutoSize = true;
+            btnMembresias.Location = new Point(12, 248);
+            btnMembresias.Name = "btnMembresias";
+            btnMembresias.Size = new Size(169, 66);
+            btnMembresias.TabIndex = 2;
+            btnMembresias.Text = "Membresias";
+            btnMembresias.UseVisualStyleBackColor = true;
+            btnMembresias.Click += btnMembresias_Click;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(splitContainer1);
+            Controls.Add(btnMembresias);
             Controls.Add(btnClientes);
             Controls.Add(label1);
             Controls.Add(splitter1);
@@ -174,5 +187,6 @@
         private Label label4;
         private Label label3;
         private Label label2;
+        private Button btnMembresias;
     }
 }

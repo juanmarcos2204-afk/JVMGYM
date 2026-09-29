@@ -12,7 +12,7 @@ namespace JVMGYM.Servicio.Mapeadores
             {
                 Tipo = membresiaCreateDto.Tipo,
                 Precio = membresiaCreateDto.Precio,
-                IdDuracion = membresiaCreateDto.IdDuracion,
+                IdDuracionMembresia = membresiaCreateDto.IdDuracionMembresia
             };
         }
 
@@ -23,7 +23,7 @@ namespace JVMGYM.Servicio.Mapeadores
                 IdMembresia = membresiaEditDto.IdMembresia,
                 Tipo = membresiaEditDto.Tipo,
                 Precio = membresiaEditDto.Precio,
-                IdDuracion = membresiaEditDto.IdDuracion
+                IdDuracionMembresia = membresiaEditDto.IdDuracionMembresia,
             };
         }
 
@@ -34,7 +34,7 @@ namespace JVMGYM.Servicio.Mapeadores
                 IdMembresia = membresia.IdMembresia,
                 Tipo = membresia.Tipo,
                 Precio = membresia.Precio,
-                IdDuracion = membresia.IdDuracion
+                DuracionMembresia = membresia.DuracionMembresia!.Nombre
             };
         }
 

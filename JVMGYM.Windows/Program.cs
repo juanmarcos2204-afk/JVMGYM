@@ -2,6 +2,7 @@ using JVMGYM.Datos;
 using JVMGYM.Datos.Interfaces;
 using JVMGYM.Datos.Repositorios;
 using JVMGYM.Servicio;
+using JVMGYM.Servicio.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -39,10 +40,15 @@ namespace JVMGYM.Windows
 
             var context =
                 new AppDbContext(options);
-
+            //RÉPOS
             IClientesRepositorio clienteRepositorio = new ClientesRepositorio(context);
-            ClientesServicio clienteServicio = new ClientesServicio(clienteRepositorio);
-            Application.Run(new frmPrincipal(clienteServicio));
+            IMembresiasRepositorio membresiaRepositorio = new MembresiasRepositorio(context);
+            //SERVICIOS
+            IClientesServicio clienteServicio = new ClientesServicio(clienteRepositorio);
+            IMembresiaServicio membresiaServicio = new MembresiaServicio(membresiaRepositorio);
+
+            Application.Run(new frmPrincipal(clienteServicio,
+                membresiaServicio));
         }
     }
 }
