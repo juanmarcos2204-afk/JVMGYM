@@ -61,7 +61,7 @@
             tsbClientes.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbEditar, tsbBorrar, toolStripSeparator1, tsbFiltrar, tsbActualizar, toolStripSeparator2, tsbCerrar });
             tsbClientes.Location = new Point(0, 0);
             tsbClientes.Name = "tsbClientes";
-            tsbClientes.Size = new Size(1059, 51);
+            tsbClientes.Size = new Size(1059, 75);
             tsbClientes.TabIndex = 0;
             tsbClientes.Text = "toolStrip1";
             // 
@@ -71,9 +71,10 @@
             tsbNuevo.ImageScaling = ToolStripItemImageScaling.None;
             tsbNuevo.ImageTransparentColor = Color.Magenta;
             tsbNuevo.Name = "tsbNuevo";
-            tsbNuevo.Size = new Size(56, 48);
+            tsbNuevo.Size = new Size(56, 72);
             tsbNuevo.Text = "&Nuevo";
             tsbNuevo.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbNuevo.Click += tsbNuevo_Click;
             // 
             // tsbEditar
             // 
@@ -81,57 +82,58 @@
             tsbEditar.ImageScaling = ToolStripItemImageScaling.None;
             tsbEditar.ImageTransparentColor = Color.Magenta;
             tsbEditar.Name = "tsbEditar";
-            tsbEditar.Size = new Size(52, 48);
+            tsbEditar.Size = new Size(52, 72);
             tsbEditar.Text = "&Editar";
             tsbEditar.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // tsbBorrar
             // 
-            tsbBorrar.Image = (Image)resources.GetObject("tsbBorrar.Image");
+            tsbBorrar.Image = Properties.Resources.Trash;
             tsbBorrar.ImageScaling = ToolStripItemImageScaling.None;
             tsbBorrar.ImageTransparentColor = Color.Magenta;
             tsbBorrar.Name = "tsbBorrar";
-            tsbBorrar.Size = new Size(54, 48);
+            tsbBorrar.Size = new Size(54, 72);
             tsbBorrar.Text = "&Borrar";
             tsbBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbBorrar.Click += tsbBorrar_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 51);
+            toolStripSeparator1.Size = new Size(6, 75);
             // 
             // tsbFiltrar
             // 
-            tsbFiltrar.Image = (Image)resources.GetObject("tsbFiltrar.Image");
+            tsbFiltrar.Image = Properties.Resources.Filter;
             tsbFiltrar.ImageScaling = ToolStripItemImageScaling.None;
             tsbFiltrar.ImageTransparentColor = Color.Magenta;
             tsbFiltrar.Name = "tsbFiltrar";
-            tsbFiltrar.Size = new Size(51, 48);
+            tsbFiltrar.Size = new Size(52, 72);
             tsbFiltrar.Text = "&Filtrar";
             tsbFiltrar.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // tsbActualizar
             // 
-            tsbActualizar.Image = (Image)resources.GetObject("tsbActualizar.Image");
+            tsbActualizar.Image = Properties.Resources.Refresh;
             tsbActualizar.ImageScaling = ToolStripItemImageScaling.None;
             tsbActualizar.ImageTransparentColor = Color.Magenta;
             tsbActualizar.Name = "tsbActualizar";
-            tsbActualizar.Size = new Size(79, 48);
+            tsbActualizar.Size = new Size(79, 72);
             tsbActualizar.Text = "&Actualizar";
             tsbActualizar.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 51);
+            toolStripSeparator2.Size = new Size(6, 75);
             // 
             // tsbCerrar
             // 
-            tsbCerrar.Image = (Image)resources.GetObject("tsbCerrar.Image");
+            tsbCerrar.Image = Properties.Resources.Cancel;
             tsbCerrar.ImageScaling = ToolStripItemImageScaling.None;
             tsbCerrar.ImageTransparentColor = Color.Magenta;
             tsbCerrar.Name = "tsbCerrar";
-            tsbCerrar.Size = new Size(53, 48);
+            tsbCerrar.Size = new Size(53, 72);
             tsbCerrar.Text = "&Cerrar";
             tsbCerrar.TextImageRelation = TextImageRelation.ImageAboveText;
             tsbCerrar.Click += tsbCerrar_Click;
@@ -139,7 +141,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(0, 51);
+            splitContainer1.Location = new Point(0, 75);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
             // 
@@ -151,8 +153,8 @@
             // 
             splitContainer1.Panel2.Controls.Add(lblCantidad);
             splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Size = new Size(1059, 399);
-            splitContainer1.SplitterDistance = 319;
+            splitContainer1.Size = new Size(1059, 375);
+            splitContainer1.SplitterDistance = 299;
             splitContainer1.TabIndex = 1;
             // 
             // dgvDatos
@@ -168,7 +170,7 @@
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDatos.Size = new Size(1059, 319);
+            dgvDatos.Size = new Size(1059, 299);
             dgvDatos.TabIndex = 0;
             // 
             // colId
