@@ -54,6 +54,27 @@ namespace JVMGYM.Windows
                 esValido = false;
                 errorProvider1.SetError(txtNombre, "El campo Nombre es obligatorio");
             }
+            if (string.IsNullOrEmpty(txtApellido.Text))
+            {
+                esValido = false;
+                errorProvider1.SetError(txtApellido, "El campo Apellido es obligatorio");
+            }
+            if (string.IsNullOrEmpty(txtDNI.Text))
+            {
+                esValido = false;
+                errorProvider1.SetError(txtDNI, "El campo DNI es obligatorio");
+            }
+            if (string.IsNullOrEmpty(txtTelefono.Text))
+            {
+                esValido = false;
+                errorProvider1.SetError(txtTelefono, "El campo Telefono es obligatorio");
+            }
+            if (string.IsNullOrEmpty(txtDomicilio.Text))
+            {
+                esValido = false;
+                errorProvider1.SetError(txtDomicilio, "El campo Domicilio es obligatorio");
+            }
+            return esValido;
         }
 
         public ClienteEditDto GetCliente()

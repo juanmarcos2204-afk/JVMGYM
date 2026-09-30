@@ -45,7 +45,7 @@ namespace JVMGYM.Windows
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            using (var frm = new frmClientesAe { Text = "Ingreso de Cliente"})
+            using (var frm = new frmClientesAe { Text = "Ingreso de Cliente" })
             {
                 DialogResult dr = frm.ShowDialog();
                 if (dr == DialogResult.Cancel) return;
@@ -58,6 +58,26 @@ namespace JVMGYM.Windows
                     MessageBoxIcon.Information);
                 RecargarGrilla();
             }
+        }
+
+        private void tsbBorrar_Click(object sender, EventArgs e)
+        {
+            if (_bindingSource.Current == null)
+            {
+                MessageBox.Show("Debe seleccionar una fila de la grilla",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+            ClientesListDto clienteListDto = (ClientesListDto)_bindingSource.Current!;
+            DialogResult dr = MessageBox.Show($"¿Desea borrar el cliente {clienteListDto.Nombre}?",
+                "Confirmar",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.No) return;
+            _clientesServicio.Eliminar(clienteListDto.IdCliente);
+            RecargarGrilla();
         }
     }
 }

@@ -62,7 +62,7 @@ namespace JVMGYM.Servicio
 
         public List<MetodoDePagoListDto> ObtenerTodos()
         {
-            return ObtenerTodos().Select(m => m.ToListDto()).ToList();
+            return _metodosDePagoRepositorio.ObtenerTodos().Select(m => m.ToListDto()).ToList();
         }
 
         public MetodoDePagoListDto ObtenerPorId(int metodoPagoId)

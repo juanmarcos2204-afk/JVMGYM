@@ -95,6 +95,7 @@
             tsbBorrar.Size = new Size(54, 72);
             tsbBorrar.Text = "&Borrar";
             tsbBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbBorrar.Click += tsbBorrar_Click;
             // 
             // toolStripSeparator1
             // 
