@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMembresias));
             tsbClientes = new ToolStrip();
             tsbNuevo = new ToolStripButton();
             tsbEditar = new ToolStripButton();
@@ -36,12 +37,12 @@
             tsbCerrar = new ToolStripButton();
             splitContainer1 = new SplitContainer();
             dgvDatos = new DataGridView();
-            lblCantidad = new Label();
-            label1 = new Label();
             colId = new DataGridViewTextBoxColumn();
             colTipo = new DataGridViewTextBoxColumn();
             colPrecio = new DataGridViewTextBoxColumn();
             colDuracion = new DataGridViewTextBoxColumn();
+            lblCantidad = new Label();
+            label1 = new Label();
             tsbClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -56,48 +57,52 @@
             tsbClientes.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbEditar, tsbBorrar, toolStripSeparator1, tsbCerrar });
             tsbClientes.Location = new Point(0, 0);
             tsbClientes.Name = "tsbClientes";
-            tsbClientes.Size = new Size(1059, 27);
+            tsbClientes.Size = new Size(1059, 75);
             tsbClientes.TabIndex = 0;
             tsbClientes.Text = "toolStrip1";
             // 
             // tsbNuevo
             // 
+            tsbNuevo.Image = (Image)resources.GetObject("tsbNuevo.Image");
             tsbNuevo.ImageScaling = ToolStripItemImageScaling.None;
             tsbNuevo.ImageTransparentColor = Color.Magenta;
             tsbNuevo.Name = "tsbNuevo";
-            tsbNuevo.Size = new Size(56, 24);
+            tsbNuevo.Size = new Size(56, 72);
             tsbNuevo.Text = "&Nuevo";
             tsbNuevo.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // tsbEditar
             // 
+            tsbEditar.Image = Properties.Resources.Edit_Pencil;
             tsbEditar.ImageScaling = ToolStripItemImageScaling.None;
             tsbEditar.ImageTransparentColor = Color.Magenta;
             tsbEditar.Name = "tsbEditar";
-            tsbEditar.Size = new Size(52, 24);
+            tsbEditar.Size = new Size(52, 72);
             tsbEditar.Text = "&Editar";
             tsbEditar.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // tsbBorrar
             // 
+            tsbBorrar.Image = Properties.Resources.Trash;
             tsbBorrar.ImageScaling = ToolStripItemImageScaling.None;
             tsbBorrar.ImageTransparentColor = Color.Magenta;
             tsbBorrar.Name = "tsbBorrar";
-            tsbBorrar.Size = new Size(54, 24);
+            tsbBorrar.Size = new Size(54, 72);
             tsbBorrar.Text = "&Borrar";
             tsbBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 27);
+            toolStripSeparator1.Size = new Size(6, 75);
             // 
             // tsbCerrar
             // 
+            tsbCerrar.Image = Properties.Resources.Cancel;
             tsbCerrar.ImageScaling = ToolStripItemImageScaling.None;
             tsbCerrar.ImageTransparentColor = Color.Magenta;
             tsbCerrar.Name = "tsbCerrar";
-            tsbCerrar.Size = new Size(53, 24);
+            tsbCerrar.Size = new Size(53, 72);
             tsbCerrar.Text = "&Cerrar";
             tsbCerrar.TextImageRelation = TextImageRelation.ImageAboveText;
             tsbCerrar.Click += tsbCerrar_Click;
@@ -105,7 +110,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(0, 27);
+            splitContainer1.Location = new Point(0, 75);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
             // 
@@ -117,8 +122,8 @@
             // 
             splitContainer1.Panel2.Controls.Add(lblCantidad);
             splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Size = new Size(1059, 423);
-            splitContainer1.SplitterDistance = 338;
+            splitContainer1.Size = new Size(1059, 375);
+            splitContainer1.SplitterDistance = 299;
             splitContainer1.TabIndex = 1;
             // 
             // dgvDatos
@@ -134,26 +139,8 @@
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDatos.Size = new Size(1059, 338);
+            dgvDatos.Size = new Size(1059, 299);
             dgvDatos.TabIndex = 0;
-            // 
-            // lblCantidad
-            // 
-            lblCantidad.AutoSize = true;
-            lblCantidad.Location = new Point(185, 21);
-            lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new Size(17, 20);
-            lblCantidad.TabIndex = 1;
-            lblCantidad.Text = "0";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(29, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(160, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Cantidad Membresias: ";
             // 
             // colId
             // 
@@ -191,6 +178,24 @@
             colDuracion.MinimumWidth = 6;
             colDuracion.Name = "colDuracion";
             colDuracion.ReadOnly = true;
+            // 
+            // lblCantidad
+            // 
+            lblCantidad.AutoSize = true;
+            lblCantidad.Location = new Point(185, 21);
+            lblCantidad.Name = "lblCantidad";
+            lblCantidad.Size = new Size(17, 20);
+            lblCantidad.TabIndex = 1;
+            lblCantidad.Text = "0";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(29, 21);
+            label1.Name = "label1";
+            label1.Size = new Size(160, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Cantidad Membresias: ";
             // 
             // frmMembresias
             // 

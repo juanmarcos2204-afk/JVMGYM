@@ -44,5 +44,17 @@ namespace JVMGYM.Servicio.Mapeadores
                 FechaAlta = clientes.FechaAlta
             };
         }
+        public static ClienteCreateDto ToCreateDto(this ClienteEditDto clienteEditDto)
+        {
+            return new ClienteCreateDto
+            {
+                Nombre = clienteEditDto.Nombre,
+                Apellido = clienteEditDto.Apellido,
+                DNI = clienteEditDto.DNI,
+                Telefono = clienteEditDto.Telefono,
+                Domicilio = clienteEditDto.Domicilio,
+                FechaAlta = DateOnly.FromDateTime(DateTime.Today),
+            };
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using JVMGYM.Servicio;
 using JVMGYM.Servicio.Dtos.Clientes;
 using JVMGYM.Servicio.Interfaces;
+using JVMGYM.Servicio.Mapeadores;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,23 @@ namespace JVMGYM.Windows
         private void tsbCerrar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void tsbNuevo_Click(object sender, EventArgs e)
+        {
+            using (var frm = new frmClientesAe { Text = "Ingreso de Cliente"})
+            {
+                DialogResult dr = frm.ShowDialog();
+                if (dr == DialogResult.Cancel) return;
+                ClienteEditDto clienteEditDto = frm.GetCliente();
+                ClienteCreateDto clienteCreateDto = clienteEditDto.ToCreateDto();
+                _clientesServicio.Agregar(clienteCreateDto);
+                MessageBox.Show("Cliente Añadido",
+                    "Mensaje",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                RecargarGrilla();
+            }
         }
     }
 }
