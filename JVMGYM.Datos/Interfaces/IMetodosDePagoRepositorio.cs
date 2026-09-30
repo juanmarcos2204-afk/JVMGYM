@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JVMGYM.Datos.Interfaces
 {
-    internal interface IMetodosDePagoRepositorio
+    public interface IMetodosDePagoRepositorio
     {
         List<MetodosDePago> ObtenerTodos();
         MetodosDePago ObtenerPorId(int id);
