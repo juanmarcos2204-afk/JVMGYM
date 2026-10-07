@@ -11,6 +11,6 @@ namespace JVMGYM.Datos.Interfaces
         void Agregar(DuracionMembresia duracionMembresia);
         void Eliminar(int id);
         DuracionMembresia? ObtenerPorId(int id);
-
+        bool TieneRegistrosRelacionados(int id);
     }
 }

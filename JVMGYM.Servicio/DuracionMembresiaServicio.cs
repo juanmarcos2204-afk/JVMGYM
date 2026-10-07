@@ -37,6 +37,10 @@ namespace JVMGYM.Servicio
             {
                 throw new KeyNotFoundException($"No se encontró una duración de la membresia con el ID {id}");
             }
+            if (_duracionMembresiaRepositorio.TieneRegistrosRelacionados(id))
+            {
+                throw new InvalidOperationException($"No se puede eliminar la duración (ID: {id}) porque tiene registros relacionados en el sistema.");
+            }
             try
             {
                 _duracionMembresiaRepositorio.Eliminar(id);

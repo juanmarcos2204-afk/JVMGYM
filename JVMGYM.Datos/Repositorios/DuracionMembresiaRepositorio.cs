@@ -39,5 +39,10 @@ namespace JVMGYM.Datos.Repositorios
         {
             return _context.DuracionesMembresias.ToList();
         }
+
+        public bool TieneRegistrosRelacionados(int id)
+        {
+            return _context.Membresias.Any(m => m.IdDuracionMembresia == id);
+        }
     }
 }
