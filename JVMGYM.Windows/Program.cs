@@ -47,12 +47,15 @@ namespace JVMGYM.Windows
             //RÉPOS
             IClientesRepositorio clienteRepositorio = new ClientesRepositorio(context);
             IMembresiasRepositorio membresiaRepositorio = new MembresiasRepositorio(context);
+            IDuracionMembresiaRepositorio duracionMembresiaRepositorio = new DuracionMembresiaRepositorio(context);
             //SERVICIOS
             IClientesServicio clienteServicio = new ClientesServicio(clienteRepositorio);
             IMembresiaServicio membresiaServicio = new MembresiaServicio(membresiaRepositorio);
+            IDuracionMembresiaServicio duracionMembresiaServicio = new DuracionMembresiaServicio(duracionMembresiaRepositorio);
 
             Application.Run(new frmPrincipal(clienteServicio,
-                membresiaServicio));
+                membresiaServicio,
+                duracionMembresiaServicio));
         }
     }
 }

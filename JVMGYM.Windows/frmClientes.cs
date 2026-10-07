@@ -103,10 +103,16 @@ namespace JVMGYM.Windows
             }
             ClientesListDto clienteListDto = (ClientesListDto)_bindingSource.Current!;
             ClienteEditDto? clienteEditDto = _clientesServicio.ObtenerParaEditar(clienteListDto.IdCliente);
-            if (clienteEditDto is null) return;
+            if (clienteEditDto is null)
+            {
+                MessageBox.Show("Cliente no encontrado",
+                    "ERROR",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             using (frmClientesAe frm = new frmClientesAe() { Text = "Editar Cliente" })
             {
-                frm.SetTipo(clienteEditDto);
+                frm.SetTipo(clienteEditDto!);
                 DialogResult dr = frm.ShowDialog();
                 if (dr == DialogResult.Cancel) return;
                 clienteEditDto = frm.GetCliente();

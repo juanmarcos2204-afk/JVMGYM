@@ -16,12 +16,15 @@ namespace JVMGYM.Windows
     {
         private readonly IClientesServicio _clientesServicio;
         private readonly IMembresiaServicio _membresiaServicio;
+        private readonly IDuracionMembresiaServicio _duracionMembresiaServicio;
         public frmPrincipal(IClientesServicio clientesServicio,
-            IMembresiaServicio membresiaServicio)
+            IMembresiaServicio membresiaServicio,
+            IDuracionMembresiaServicio duracionMembresiaServicio)
         {
             InitializeComponent();
             _clientesServicio = clientesServicio;
             _membresiaServicio = membresiaServicio;
+            _duracionMembresiaServicio = duracionMembresiaServicio;
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -40,6 +43,14 @@ namespace JVMGYM.Windows
         private void btnMembresias_Click(object sender, EventArgs e)
         {
             using (var frm = new frmMembresias(_membresiaServicio) { Text = "Listado de Membresias" })
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void btnDuracionMembresia_Click(object sender, EventArgs e)
+        {
+            using (var frm = new frmDuracionMembresias(_duracionMembresiaServicio) { Text = "Listado de Duración de Membresias"})
             {
                 frm.ShowDialog();
             }

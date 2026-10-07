@@ -34,11 +34,12 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panelDerecho = new Panel();
-            lblFecha = new Label();
-            btnCerrarSesion = new Button();
-            label2 = new Label();
-            label3 = new Label();
             label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            btnCerrarSesion = new Button();
+            lblFecha = new Label();
+            btnDuracionMembresia = new Button();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelDerecho.SuspendLayout();
@@ -81,6 +82,7 @@
             // panelLateral
             // 
             panelLateral.BackColor = Color.DarkGreen;
+            panelLateral.Controls.Add(btnDuracionMembresia);
             panelLateral.Controls.Add(btnMembresias);
             panelLateral.Controls.Add(label1);
             panelLateral.Controls.Add(btnClientes);
@@ -88,7 +90,7 @@
             panelLateral.Dock = DockStyle.Left;
             panelLateral.Location = new Point(0, 0);
             panelLateral.Name = "panelLateral";
-            panelLateral.Size = new Size(250, 467);
+            panelLateral.Size = new Size(250, 493);
             panelLateral.TabIndex = 3;
             // 
             // label1
@@ -125,18 +127,36 @@
             panelDerecho.Dock = DockStyle.Fill;
             panelDerecho.Location = new Point(250, 0);
             panelDerecho.Name = "panelDerecho";
-            panelDerecho.Size = new Size(827, 467);
+            panelDerecho.Size = new Size(827, 493);
             panelDerecho.TabIndex = 4;
             // 
-            // lblFecha
+            // label4
             // 
-            lblFecha.AutoSize = true;
-            lblFecha.ForeColor = Color.Black;
-            lblFecha.Location = new Point(546, 32);
-            lblFecha.Name = "lblFecha";
-            lblFecha.Size = new Size(85, 20);
-            lblFecha.TabIndex = 0;
-            lblFecha.Text = "01/01/2026";
+            label4.AutoSize = true;
+            label4.Location = new Point(302, 269);
+            label4.Name = "label4";
+            label4.Size = new Size(258, 20);
+            label4.TabIndex = 3;
+            label4.Text = "Seleccione una opción para continuar";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(302, 228);
+            label3.Name = "label3";
+            label3.Size = new Size(229, 20);
+            label3.TabIndex = 3;
+            label3.Text = "Sistema de Gestion de Gimnasios";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(41, 78);
+            label2.Name = "label2";
+            label2.Size = new Size(358, 38);
+            label2.TabIndex = 2;
+            label2.Text = "¡Bienvenido Nuevamente!";
             // 
             // btnCerrarSesion
             // 
@@ -151,39 +171,38 @@
             btnCerrarSesion.UseVisualStyleBackColor = false;
             btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
-            // label2
+            // lblFecha
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(41, 78);
-            label2.Name = "label2";
-            label2.Size = new Size(358, 38);
-            label2.TabIndex = 2;
-            label2.Text = "¡Bienvenido Nuevamente!";
+            lblFecha.AutoSize = true;
+            lblFecha.ForeColor = Color.Black;
+            lblFecha.Location = new Point(546, 32);
+            lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(85, 20);
+            lblFecha.TabIndex = 0;
+            lblFecha.Text = "01/01/2026";
             // 
-            // label3
+            // btnDuracionMembresia
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(302, 228);
-            label3.Name = "label3";
-            label3.Size = new Size(229, 20);
-            label3.TabIndex = 3;
-            label3.Text = "Sistema de Gestion de Gimnasios";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(302, 269);
-            label4.Name = "label4";
-            label4.Size = new Size(258, 20);
-            label4.TabIndex = 3;
-            label4.Text = "Seleccione una opción para continuar";
+            btnDuracionMembresia.AutoSize = true;
+            btnDuracionMembresia.BackColor = Color.MediumSeaGreen;
+            btnDuracionMembresia.Cursor = Cursors.Hand;
+            btnDuracionMembresia.FlatAppearance.BorderSize = 0;
+            btnDuracionMembresia.FlatStyle = FlatStyle.Flat;
+            btnDuracionMembresia.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDuracionMembresia.ForeColor = Color.White;
+            btnDuracionMembresia.Location = new Point(40, 385);
+            btnDuracionMembresia.Name = "btnDuracionMembresia";
+            btnDuracionMembresia.Size = new Size(170, 70);
+            btnDuracionMembresia.TabIndex = 2;
+            btnDuracionMembresia.Text = "DURACION \r\nMEMBRESIAS";
+            btnDuracionMembresia.UseVisualStyleBackColor = false;
+            btnDuracionMembresia.Click += btnDuracionMembresia_Click;
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1077, 467);
+            ClientSize = new Size(1077, 493);
             Controls.Add(panelDerecho);
             Controls.Add(panelLateral);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -210,5 +229,6 @@
         private Label lblFecha;
         private Label label4;
         private Label label3;
+        private Button btnDuracionMembresia;
     }
 }
