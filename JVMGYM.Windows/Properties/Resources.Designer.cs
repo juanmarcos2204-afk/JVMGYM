@@ -83,6 +83,16 @@ namespace JVMGYM.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dumbbell {
+            get {
+                object obj = ResourceManager.GetObject("Dumbbell", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Edit_Pencil {
             get {
                 object obj = ResourceManager.GetObject("Edit Pencil", resourceCulture);
@@ -96,6 +106,36 @@ namespace JVMGYM.Windows.Properties {
         internal static System.Drawing.Bitmap Filter {
             get {
                 object obj = ResourceManager.GetObject("Filter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logogym {
+            get {
+                object obj = ResourceManager.GetObject("logogym", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logogym_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("logogym-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logogym1 {
+            get {
+                object obj = ResourceManager.GetObject("logogym1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
