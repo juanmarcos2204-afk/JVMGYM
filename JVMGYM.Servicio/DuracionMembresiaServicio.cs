@@ -1,24 +1,18 @@
 ﻿using JVMGYM.Datos.Interfaces;
-using JVMGYM.Datos.Repositorios;
 using JVMGYM.Entidades;
-using JVMGYM.Servicio.Dtos.Clientes;
 using JVMGYM.Servicio.Dtos.Duracion_Membresia;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JVMGYM.Servicio
 {
-    public class DuracionMembresiaServicio: IDuracionMembresiaServicio
+    public class DuracionMembresiaServicio : IDuracionMembresiaServicio
     {
         private readonly IDuracionMembresiaRepositorio _duracionMembresiaRepositorio;
         public DuracionMembresiaServicio(IDuracionMembresiaRepositorio duracionMembresiaRepositorio)
         {
             _duracionMembresiaRepositorio = duracionMembresiaRepositorio;
         }
-
         public void Agregar(DuracionMembresiaCreateDto duracionMembresiaCreateDto)
         {
             DuracionMembresia duracionMembresia = duracionMembresiaCreateDto.ToEntidad();
@@ -30,9 +24,7 @@ namespace JVMGYM.Servicio
             {
                 throw new Exception(ex.Message);
             }
-
         }
-
         public void Eliminar(int id)
         {
             if (id <= 0)
@@ -54,7 +46,17 @@ namespace JVMGYM.Servicio
                 throw new Exception(ex.Message);
             }
         }
-
+        public List<DuracionMembresiaListDto> ObtenerDatosCombo()
+        {
+            var lista = _duracionMembresiaRepositorio.ObtenerTodos().Select(dm => dm.ToListDto()).ToList();
+            var defaultDuracionMembresia = new DuracionMembresiaListDto
+            {
+                IdDuracionMembresia = 0,
+                Nombre = "Seleccione"
+            };
+            lista.Insert(0, defaultDuracionMembresia);
+            return lista;
+        }
         public List<DuracionMembresiaListDto> ObtenerTodos()
         {
             return _duracionMembresiaRepositorio.ObtenerTodos().Select(dm => dm.ToListDto()).ToList();

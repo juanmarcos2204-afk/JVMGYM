@@ -10,6 +10,7 @@ namespace JVMGYM.Servicio.Interfaces
     {
         void Agregar(DuracionMembresiaCreateDto duracionMembresiaCreateDto);
         void Eliminar(int id);
+        List<DuracionMembresiaListDto> ObtenerDatosCombo();
         List<DuracionMembresiaListDto> ObtenerTodos();
 
     }

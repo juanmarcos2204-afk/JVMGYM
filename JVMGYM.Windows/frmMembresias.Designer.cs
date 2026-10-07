@@ -70,6 +70,7 @@
             tsbNuevo.Size = new Size(56, 72);
             tsbNuevo.Text = "&Nuevo";
             tsbNuevo.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbNuevo.Click += tsbNuevo_Click;
             // 
             // tsbEditar
             // 
@@ -80,6 +81,7 @@
             tsbEditar.Size = new Size(52, 72);
             tsbEditar.Text = "&Editar";
             tsbEditar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbEditar.Click += tsbEditar_Click;
             // 
             // tsbBorrar
             // 
@@ -90,6 +92,7 @@
             tsbBorrar.Size = new Size(54, 72);
             tsbBorrar.Text = "&Borrar";
             tsbBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbBorrar.Click += tsbBorrar_Click;
             // 
             // toolStripSeparator1
             // 
@@ -208,7 +211,7 @@
             MinimumSize = new Size(1077, 497);
             Name = "frmMembresias";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmClientes";
+            Text = "frmMembresias";
             Load += frmMembresias_Load;
             tsbClientes.ResumeLayout(false);
             tsbClientes.PerformLayout();

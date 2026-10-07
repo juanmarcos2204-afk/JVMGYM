@@ -37,6 +37,25 @@ namespace JVMGYM.Servicio.Mapeadores
                 DuracionMembresia = membresia.DuracionMembresia!.Nombre
             };
         }
+        public static MembresiaCreateDto ToCreateDto (this MembresiaEditDto membresiaEditDto)
+        {
+            return new MembresiaCreateDto
+            {
+                Tipo = membresiaEditDto.Tipo,
+                Precio = membresiaEditDto.Precio,
+                IdDuracionMembresia = membresiaEditDto.IdDuracionMembresia
+            };
+        }
+        public static MembresiaEditDto ToEditDto (this Membresia membresia)
+        {
+            return new MembresiaEditDto
+            {
+                IdMembresia = membresia.IdMembresia,
+                Tipo = membresia.Tipo,
+                Precio = membresia.Precio,
+                IdDuracionMembresia = membresia.IdDuracionMembresia
+            };
 
+        }
     }
 }

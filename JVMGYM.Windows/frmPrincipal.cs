@@ -42,7 +42,7 @@ namespace JVMGYM.Windows
 
         private void btnMembresias_Click(object sender, EventArgs e)
         {
-            using (var frm = new frmMembresias(_membresiaServicio) { Text = "Listado de Membresias" })
+            using (var frm = new frmMembresias(_membresiaServicio, _duracionMembresiaServicio) { Text = "Listado de Membresias" })
             {
                 frm.ShowDialog();
             }

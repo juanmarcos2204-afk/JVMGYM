@@ -138,7 +138,6 @@ namespace JVMGYM.Windows
                          "Error",
                          MessageBoxButtons.OK,
                          MessageBoxIcon.Error);
-
                 }
 
             }

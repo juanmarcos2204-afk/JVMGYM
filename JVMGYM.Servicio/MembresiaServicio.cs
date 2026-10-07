@@ -1,5 +1,7 @@
 ﻿using JVMGYM.Datos.Interfaces;
+using JVMGYM.Datos.Repositorios;
 using JVMGYM.Entidades;
+using JVMGYM.Servicio.Dtos.Clientes;
 using JVMGYM.Servicio.Dtos.Membresias;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
@@ -18,6 +20,10 @@ namespace JVMGYM.Servicio
         public void Agregar(MembresiaCreateDto membresiaCreateDto)
         {
             Membresia membresia = membresiaCreateDto.ToEntidad();
+            if (_membresiasRepositorio.Existe(membresia))
+            {
+                throw new ArgumentException("Membresia ya existente");
+            }
             try
             {
                 _membresiasRepositorio.Agregar(membresia);
@@ -32,9 +38,12 @@ namespace JVMGYM.Servicio
         public void Editar(MembresiaEditDto membresiaEditDto)
         {
             Membresia membresia = membresiaEditDto.ToEntidad();
-            if (membresiaEditDto.IdMembresia == 0)
+            if (membresia.IdMembresia == 0)
                 throw new ArgumentOutOfRangeException("El Id de la Membresia debe ser mayor a cero");
-            if (membresiaEditDto.Tipo.Equals(membresia.Tipo)) throw new ArgumentException("Ya existe esa misma membresia");
+            if (_membresiasRepositorio.Existe(membresia))
+            {
+                throw new ArgumentException("Membresia ya existente");
+            }
             _membresiasRepositorio.Editar(membresia);
         }
 
@@ -76,6 +85,16 @@ namespace JVMGYM.Servicio
                 throw new KeyNotFoundException("No se encontró la membresia");
             return membresia.ToListDto();
 
+        }
+
+        public MembresiaEditDto? ObtenerParaEditar(int id)
+        {
+            if (id <= 0)
+                throw new ArgumentException("El ID de la membresia debe ser un entero mayor a cero.", nameof(id));
+            Membresia? membresia = _membresiasRepositorio.ObtenerPorId(id);
+            if (membresia is null) throw new ArgumentException(nameof(id), $"Id {id} no encontrado");
+            MembresiaEditDto membresiaEditDto = membresia.ToEditDto();
+            return membresiaEditDto;
         }
     }
 }

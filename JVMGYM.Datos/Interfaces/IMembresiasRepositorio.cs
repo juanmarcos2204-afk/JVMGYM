@@ -11,5 +11,6 @@ namespace JVMGYM.Datos.Interfaces
 
         //ELIMINAMOS REGISTROS POR ID
         void Eliminar(int membresiaId);
+        bool Existe (Membresia membresia);
     }
 }
