@@ -13,6 +13,6 @@ namespace JVMGYM.Servicio.Dtos.Clientes
         public string? Telefono { get; set; }
         public string Domicilio { get; set; } = null!;
         public DateOnly FechaAlta { get; set; }
-
+        public bool Activo { get; set; }
     }
 }

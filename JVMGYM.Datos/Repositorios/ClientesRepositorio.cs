@@ -26,6 +26,7 @@ namespace JVMGYM.Datos.Repositorios
             clienteEnDb.Telefono = clientes.Telefono;
             clienteEnDb.Domicilio = clientes.Domicilio;
             clienteEnDb.FechaAlta = clientes.FechaAlta;
+            clienteEnDb.Activo = clientes.Activo;
 
             _context.SaveChanges() ;
         }
@@ -37,6 +38,18 @@ namespace JVMGYM.Datos.Repositorios
             _context.Clientes.Remove(clienteEnDb);
             _context.SaveChanges();
 
+        }
+
+        public bool Existe(Cliente cliente)
+        {
+            return _context.Clientes.Any(c => c.DNI == cliente.DNI &&
+                c.IdCliente != cliente.IdCliente);
+
+        }
+
+        public List<Cliente> FiltrarPorActivo(bool activo)
+        {
+            return _context.Clientes.Where(c => c.Activo == activo).ToList();
         }
 
         public Cliente? ObtenerPorId(int id)

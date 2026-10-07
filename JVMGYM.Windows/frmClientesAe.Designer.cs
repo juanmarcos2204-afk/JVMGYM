@@ -32,7 +32,7 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            label4 = new Label();
+            lblDNI = new Label();
             label5 = new Label();
             label6 = new Label();
             txtNombre = new TextBox();
@@ -43,6 +43,8 @@
             btnCancelar = new Button();
             btnOk = new Button();
             errorProvider1 = new ErrorProvider(components);
+            lblActivo = new Label();
+            chkActivo = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
@@ -74,14 +76,14 @@
             label3.TabIndex = 2;
             label3.Text = "Apellido: ";
             // 
-            // label4
+            // lblDNI
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(49, 197);
-            label4.Name = "label4";
-            label4.Size = new Size(42, 20);
-            label4.TabIndex = 3;
-            label4.Text = "DNI: ";
+            lblDNI.AutoSize = true;
+            lblDNI.Location = new Point(49, 197);
+            lblDNI.Name = "lblDNI";
+            lblDNI.Size = new Size(42, 20);
+            lblDNI.TabIndex = 3;
+            lblDNI.Text = "DNI: ";
             // 
             // label5
             // 
@@ -106,7 +108,7 @@
             txtNombre.Location = new Point(126, 82);
             txtNombre.MaxLength = 50;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(125, 27);
+            txtNombre.Size = new Size(203, 27);
             txtNombre.TabIndex = 0;
             // 
             // txtApellido
@@ -114,7 +116,7 @@
             txtApellido.Location = new Point(128, 135);
             txtApellido.MaxLength = 50;
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(125, 27);
+            txtApellido.Size = new Size(201, 27);
             txtApellido.TabIndex = 1;
             // 
             // txtDNI
@@ -130,7 +132,7 @@
             txtTelefono.Location = new Point(129, 260);
             txtTelefono.MaxLength = 30;
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(125, 27);
+            txtTelefono.Size = new Size(152, 27);
             txtTelefono.TabIndex = 3;
             // 
             // txtDomicilio
@@ -139,13 +141,13 @@
             txtDomicilio.Location = new Point(136, 328);
             txtDomicilio.MaxLength = 30;
             txtDomicilio.Name = "txtDomicilio";
-            txtDomicilio.Size = new Size(125, 27);
+            txtDomicilio.Size = new Size(233, 27);
             txtDomicilio.TabIndex = 4;
             // 
             // btnCancelar
             // 
             btnCancelar.Image = Properties.Resources.Cancel;
-            btnCancelar.Location = new Point(364, 404);
+            btnCancelar.Location = new Point(360, 498);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(94, 92);
             btnCancelar.TabIndex = 6;
@@ -157,7 +159,7 @@
             // btnOk
             // 
             btnOk.Image = Properties.Resources.Checkmark;
-            btnOk.Location = new Point(49, 404);
+            btnOk.Location = new Point(49, 498);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(94, 92);
             btnOk.TabIndex = 5;
@@ -170,12 +172,33 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // lblActivo
+            // 
+            lblActivo.AutoSize = true;
+            lblActivo.Location = new Point(54, 393);
+            lblActivo.Name = "lblActivo";
+            lblActivo.Size = new Size(0, 20);
+            lblActivo.TabIndex = 7;
+            // 
+            // chkActivo
+            // 
+            chkActivo.AutoSize = true;
+            chkActivo.CheckAlign = ContentAlignment.MiddleRight;
+            chkActivo.Location = new Point(49, 393);
+            chkActivo.Name = "chkActivo";
+            chkActivo.Size = new Size(80, 24);
+            chkActivo.TabIndex = 8;
+            chkActivo.Text = "Activo: ";
+            chkActivo.UseVisualStyleBackColor = true;
+            // 
             // frmClientesAe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(506, 526);
+            ClientSize = new Size(506, 621);
+            Controls.Add(chkActivo);
+            Controls.Add(lblActivo);
             Controls.Add(btnOk);
             Controls.Add(btnCancelar);
             Controls.Add(txtDomicilio);
@@ -185,7 +208,7 @@
             Controls.Add(txtNombre);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(label4);
+            Controls.Add(lblDNI);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -203,7 +226,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private Label label4;
+        private Label lblDNI;
         private Label label5;
         private Label label6;
         private TextBox txtNombre;
@@ -214,5 +237,7 @@
         private Button btnCancelar;
         private Button btnOk;
         private ErrorProvider errorProvider1;
+        private CheckBox chkActivo;
+        private Label lblActivo;
     }
 }

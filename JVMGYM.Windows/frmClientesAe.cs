@@ -24,7 +24,22 @@ namespace JVMGYM.Windows
 
         private void frmClientesAe_Load(object sender, EventArgs e)
         {
-
+            if (_clientoDto is null)
+            {
+                chkActivo.Enabled = false;
+                chkActivo.Checked = true;
+            }
+            else
+            {
+                txtNombre.Text = _clientoDto.Nombre;
+                txtApellido.Text = _clientoDto.Apellido;
+                txtDNI.Text = _clientoDto.DNI;
+                lblDNI.Enabled = false;
+                txtDNI.Enabled = false;
+                txtTelefono.Text = _clientoDto.Telefono;
+                txtDomicilio.Text = _clientoDto.Domicilio;
+                chkActivo.Checked = _clientoDto.Activo;
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -40,6 +55,7 @@ namespace JVMGYM.Windows
                 _clientoDto.DNI = txtDNI.Text;
                 _clientoDto.Telefono = txtTelefono.Text;
                 _clientoDto.Domicilio = txtDomicilio.Text;
+                _clientoDto.Activo = chkActivo.Checked;
 
                 DialogResult = DialogResult.OK;
             }
@@ -80,6 +96,11 @@ namespace JVMGYM.Windows
         public ClienteEditDto GetCliente()
         {
             return _clientoDto;
+        }
+
+        public void SetTipo(ClienteEditDto clienteEditDto)
+        {
+            _clientoDto = clienteEditDto;
         }
     }
 }

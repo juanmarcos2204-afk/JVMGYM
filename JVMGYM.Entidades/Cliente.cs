@@ -105,6 +105,6 @@
                 _Idcliente = value;
             }
         }
-
+        public bool Activo { get; set; }
     }
 }
