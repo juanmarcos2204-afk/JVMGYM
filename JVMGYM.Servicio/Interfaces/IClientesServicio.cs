@@ -6,7 +6,9 @@ namespace JVMGYM.Servicio.Interfaces
     {
         void Agregar(ClienteCreateDto clienteCreateDto);
         void Editar(ClienteEditDto clienteEditDto);
+        ClienteEditDto ObtenerParaEditar(int id);
         void Eliminar(int clienteId);
         List<ClientesListDto> ObtenerTodos();
+        List<ClientesListDto> FiltrarPorActivo(bool activo);
     }
 }

@@ -12,5 +12,7 @@ namespace JVMGYM.Datos.Interfaces
         void Agregar(Cliente clientes);
         void Editar(Cliente clientes);
         void Eliminar(int clienteId);
+        bool Existe(Cliente cliente);
+        List<Cliente> FiltrarPorActivo(bool activo);
     }
 }

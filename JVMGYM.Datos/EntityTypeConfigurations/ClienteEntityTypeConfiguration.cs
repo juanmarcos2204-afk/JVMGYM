@@ -20,6 +20,7 @@ namespace JVMGYM.Datos.EntityTypeConfigurations
             builder.Property(c => c.Telefono).HasMaxLength(30);
             builder.Property(c => c.Domicilio).HasMaxLength(30);
             builder.Property(c => c.FechaAlta);
+            builder.Property(c => c.Activo);
         }
     }
 }

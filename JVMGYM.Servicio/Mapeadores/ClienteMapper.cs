@@ -17,7 +17,8 @@ namespace JVMGYM.Servicio.Mapeadores
                 DNI = clienteCreateDto.DNI,
                 Telefono = clienteCreateDto.Telefono,
                 Domicilio = clienteCreateDto.Domicilio,
-                FechaAlta = clienteCreateDto.FechaAlta
+                FechaAlta = clienteCreateDto.FechaAlta,
+                Activo = clienteCreateDto.Activo,
             };
         }
         public static Cliente ToEntidad(this ClienteEditDto clienteEditDto)
@@ -30,7 +31,8 @@ namespace JVMGYM.Servicio.Mapeadores
                 DNI = clienteEditDto.DNI,
                 Telefono = clienteEditDto.Telefono,
                 Domicilio = clienteEditDto.Domicilio,
-                FechaAlta = clienteEditDto.FechaAlta
+                FechaAlta = clienteEditDto.FechaAlta,
+                Activo = clienteEditDto.Activo,
             };
         }
         public static ClientesListDto ToListDto(this Cliente clientes)
@@ -41,7 +43,8 @@ namespace JVMGYM.Servicio.Mapeadores
                 Nombre = clientes.Nombre,
                 Apellido = clientes.Apellido,
                 DNI = clientes.DNI,
-                FechaAlta = clientes.FechaAlta
+                FechaAlta = clientes.FechaAlta,
+                Activo = clientes.Activo,
             };
         }
         public static ClienteCreateDto ToCreateDto(this ClienteEditDto clienteEditDto)
@@ -54,6 +57,21 @@ namespace JVMGYM.Servicio.Mapeadores
                 Telefono = clienteEditDto.Telefono,
                 Domicilio = clienteEditDto.Domicilio,
                 FechaAlta = DateOnly.FromDateTime(DateTime.Today),
+                Activo = true
+            };
+        }
+        public static ClienteEditDto ToEditDto (this Cliente cliente)
+        {
+            return new ClienteEditDto
+            {
+                IdCliente = cliente.IdCliente,
+                Nombre = cliente.Nombre,
+                Apellido = cliente.Apellido,
+                DNI = cliente.DNI,
+                Telefono = cliente.Telefono,
+                Domicilio = cliente.Domicilio,
+                FechaAlta = cliente.FechaAlta,
+                Activo = cliente.Activo
             };
         }
     }

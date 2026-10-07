@@ -34,7 +34,9 @@
             tsbEditar = new ToolStripButton();
             tsbBorrar = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            tsbFiltrar = new ToolStripButton();
+            tsbFiltrar = new ToolStripDropDownButton();
+            activoToolStripMenuItem = new ToolStripMenuItem();
+            noActivoToolStripMenuItem = new ToolStripMenuItem();
             tsbActualizar = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             tsbCerrar = new ToolStripButton();
@@ -45,6 +47,7 @@
             colApellido = new DataGridViewTextBoxColumn();
             colDNI = new DataGridViewTextBoxColumn();
             colFechaAlta = new DataGridViewTextBoxColumn();
+            colActivo = new DataGridViewCheckBoxColumn();
             lblCantidad = new Label();
             label1 = new Label();
             tsbClientes.SuspendLayout();
@@ -85,6 +88,7 @@
             tsbEditar.Size = new Size(52, 72);
             tsbEditar.Text = "&Editar";
             tsbEditar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbEditar.Click += tsbEditar_Click;
             // 
             // tsbBorrar
             // 
@@ -104,13 +108,28 @@
             // 
             // tsbFiltrar
             // 
+            tsbFiltrar.DropDownItems.AddRange(new ToolStripItem[] { activoToolStripMenuItem, noActivoToolStripMenuItem });
             tsbFiltrar.Image = Properties.Resources.Filter;
             tsbFiltrar.ImageScaling = ToolStripItemImageScaling.None;
             tsbFiltrar.ImageTransparentColor = Color.Magenta;
             tsbFiltrar.Name = "tsbFiltrar";
-            tsbFiltrar.Size = new Size(52, 72);
+            tsbFiltrar.Size = new Size(62, 72);
             tsbFiltrar.Text = "&Filtrar";
             tsbFiltrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // activoToolStripMenuItem
+            // 
+            activoToolStripMenuItem.Name = "activoToolStripMenuItem";
+            activoToolStripMenuItem.Size = new Size(224, 26);
+            activoToolStripMenuItem.Text = "Activo";
+            activoToolStripMenuItem.Click += activoToolStripMenuItem_Click;
+            // 
+            // noActivoToolStripMenuItem
+            // 
+            noActivoToolStripMenuItem.Name = "noActivoToolStripMenuItem";
+            noActivoToolStripMenuItem.Size = new Size(224, 26);
+            noActivoToolStripMenuItem.Text = "No Activo";
+            noActivoToolStripMenuItem.Click += noActivoToolStripMenuItem_Click;
             // 
             // tsbActualizar
             // 
@@ -121,6 +140,7 @@
             tsbActualizar.Size = new Size(79, 72);
             tsbActualizar.Text = "&Actualizar";
             tsbActualizar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbActualizar.Click += tsbActualizar_Click;
             // 
             // toolStripSeparator2
             // 
@@ -162,7 +182,7 @@
             dgvDatos.AllowUserToAddRows = false;
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colNombre, colApellido, colDNI, colFechaAlta });
+            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colNombre, colApellido, colDNI, colFechaAlta, colActivo });
             dgvDatos.Dock = DockStyle.Fill;
             dgvDatos.Location = new Point(0, 0);
             dgvDatos.MultiSelect = false;
@@ -219,6 +239,15 @@
             colFechaAlta.Name = "colFechaAlta";
             colFechaAlta.ReadOnly = true;
             // 
+            // colActivo
+            // 
+            colActivo.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colActivo.DataPropertyName = "Activo";
+            colActivo.HeaderText = "Activo";
+            colActivo.MinimumWidth = 6;
+            colActivo.Name = "colActivo";
+            colActivo.ReadOnly = true;
+            // 
             // lblCantidad
             // 
             lblCantidad.AutoSize = true;
@@ -269,7 +298,6 @@
         private ToolStripButton tsbEditar;
         private ToolStripButton tsbBorrar;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton tsbFiltrar;
         private ToolStripButton tsbActualizar;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton tsbCerrar;
@@ -282,5 +310,9 @@
         private DataGridViewTextBoxColumn colApellido;
         private DataGridViewTextBoxColumn colDNI;
         private DataGridViewTextBoxColumn colFechaAlta;
+        private DataGridViewCheckBoxColumn colActivo;
+        private ToolStripDropDownButton tsbFiltrar;
+        private ToolStripMenuItem activoToolStripMenuItem;
+        private ToolStripMenuItem noActivoToolStripMenuItem;
     }
 }
