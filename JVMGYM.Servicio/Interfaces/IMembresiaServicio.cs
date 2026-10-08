@@ -9,5 +9,6 @@ namespace JVMGYM.Servicio.Interfaces
         void Eliminar(int membresiaId);
         List<MembresiaListDto> ObtenerTodos();
         MembresiaListDto ObtenerPorId(int membresiaId);
+        MembresiaEditDto? ObtenerParaEditar(int idMembresia);
     }
 }

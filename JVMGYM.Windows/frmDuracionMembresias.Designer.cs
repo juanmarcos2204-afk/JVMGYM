@@ -1,6 +1,6 @@
 ﻿namespace JVMGYM.Windows
 {
-    partial class frmMembresias
+    partial class frmDuracionMembresias
     {
         /// <summary>
         /// Required designer variable.
@@ -28,25 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMembresias));
             tsbClientes = new ToolStrip();
             tsbNuevo = new ToolStripButton();
-            tsbEditar = new ToolStripButton();
             tsbBorrar = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             tsbCerrar = new ToolStripButton();
             splitContainer1 = new SplitContainer();
             dgvDatos = new DataGridView();
             colId = new DataGridViewTextBoxColumn();
-            colTipo = new DataGridViewTextBoxColumn();
-            colPrecio = new DataGridViewTextBoxColumn();
-            colDuracion = new DataGridViewTextBoxColumn();
-            lblCantidad = new Label();
-            label1 = new Label();
+            colNombre = new DataGridViewTextBoxColumn();
             tsbClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             SuspendLayout();
@@ -54,7 +47,7 @@
             // tsbClientes
             // 
             tsbClientes.ImageScalingSize = new Size(20, 20);
-            tsbClientes.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbEditar, tsbBorrar, toolStripSeparator1, tsbCerrar });
+            tsbClientes.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBorrar, toolStripSeparator1, tsbCerrar });
             tsbClientes.Location = new Point(0, 0);
             tsbClientes.Name = "tsbClientes";
             tsbClientes.Size = new Size(1059, 75);
@@ -63,7 +56,7 @@
             // 
             // tsbNuevo
             // 
-            tsbNuevo.Image = (Image)resources.GetObject("tsbNuevo.Image");
+            tsbNuevo.Image = Properties.Resources.Plus;
             tsbNuevo.ImageScaling = ToolStripItemImageScaling.None;
             tsbNuevo.ImageTransparentColor = Color.Magenta;
             tsbNuevo.Name = "tsbNuevo";
@@ -71,17 +64,6 @@
             tsbNuevo.Text = "&Nuevo";
             tsbNuevo.TextImageRelation = TextImageRelation.ImageAboveText;
             tsbNuevo.Click += tsbNuevo_Click;
-            // 
-            // tsbEditar
-            // 
-            tsbEditar.Image = Properties.Resources.Edit_Pencil;
-            tsbEditar.ImageScaling = ToolStripItemImageScaling.None;
-            tsbEditar.ImageTransparentColor = Color.Magenta;
-            tsbEditar.Name = "tsbEditar";
-            tsbEditar.Size = new Size(52, 72);
-            tsbEditar.Text = "&Editar";
-            tsbEditar.TextImageRelation = TextImageRelation.ImageAboveText;
-            tsbEditar.Click += tsbEditar_Click;
             // 
             // tsbBorrar
             // 
@@ -120,11 +102,6 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.Controls.Add(dgvDatos);
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.Controls.Add(lblCantidad);
-            splitContainer1.Panel2.Controls.Add(label1);
             splitContainer1.Size = new Size(1059, 375);
             splitContainer1.SplitterDistance = 299;
             splitContainer1.TabIndex = 1;
@@ -134,7 +111,7 @@
             dgvDatos.AllowUserToAddRows = false;
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colTipo, colPrecio, colDuracion });
+            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colNombre });
             dgvDatos.Dock = DockStyle.Fill;
             dgvDatos.Location = new Point(0, 0);
             dgvDatos.MultiSelect = false;
@@ -147,60 +124,24 @@
             // 
             // colId
             // 
-            colId.DataPropertyName = "IdMembresia";
-            colId.HeaderText = "IdMembresia";
+            colId.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colId.DataPropertyName = "IdDuracionMembresia";
+            colId.HeaderText = "IdDuracionMembresia";
             colId.MinimumWidth = 6;
             colId.Name = "colId";
             colId.ReadOnly = true;
             colId.Visible = false;
-            colId.Width = 125;
             // 
-            // colTipo
+            // colNombre
             // 
-            colTipo.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colTipo.DataPropertyName = "Tipo";
-            colTipo.HeaderText = "Tipo de Membresia";
-            colTipo.MinimumWidth = 6;
-            colTipo.Name = "colTipo";
-            colTipo.ReadOnly = true;
+            colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colNombre.DataPropertyName = "Nombre";
+            colNombre.HeaderText = "Nombre";
+            colNombre.MinimumWidth = 6;
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
             // 
-            // colPrecio
-            // 
-            colPrecio.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colPrecio.DataPropertyName = "Precio";
-            colPrecio.HeaderText = "Precio";
-            colPrecio.MinimumWidth = 6;
-            colPrecio.Name = "colPrecio";
-            colPrecio.ReadOnly = true;
-            // 
-            // colDuracion
-            // 
-            colDuracion.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colDuracion.DataPropertyName = "DuracionMembresia";
-            colDuracion.HeaderText = "Duracion de la Membresia";
-            colDuracion.MinimumWidth = 6;
-            colDuracion.Name = "colDuracion";
-            colDuracion.ReadOnly = true;
-            // 
-            // lblCantidad
-            // 
-            lblCantidad.AutoSize = true;
-            lblCantidad.Location = new Point(185, 21);
-            lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new Size(17, 20);
-            lblCantidad.TabIndex = 1;
-            lblCantidad.Text = "0";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(29, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(160, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Cantidad Membresias: ";
-            // 
-            // frmMembresias
+            // frmDuracionMembresias
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -209,15 +150,13 @@
             Controls.Add(tsbClientes);
             MaximumSize = new Size(1077, 497);
             MinimumSize = new Size(1077, 497);
-            Name = "frmMembresias";
+            Name = "frmDuracionMembresias";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmMembresias";
-            Load += frmMembresias_Load;
+            Text = "frmDuracionMembresias";
+            Load += frmDuracionMembresias_Load;
             tsbClientes.ResumeLayout(false);
             tsbClientes.PerformLayout();
             splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel2.ResumeLayout(false);
-            splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
@@ -229,17 +168,12 @@
 
         private ToolStrip tsbClientes;
         private ToolStripButton tsbNuevo;
-        private ToolStripButton tsbEditar;
         private ToolStripButton tsbBorrar;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton tsbCerrar;
         private SplitContainer splitContainer1;
         private DataGridView dgvDatos;
-        private Label lblCantidad;
-        private Label label1;
         private DataGridViewTextBoxColumn colId;
-        private DataGridViewTextBoxColumn colTipo;
-        private DataGridViewTextBoxColumn colPrecio;
-        private DataGridViewTextBoxColumn colDuracion;
+        private DataGridViewTextBoxColumn colNombre;
     }
 }

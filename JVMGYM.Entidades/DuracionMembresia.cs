@@ -3,7 +3,7 @@
     public class DuracionMembresia
     {
         private int _idDuracionMembresia;
-        private string _nombre = null!;
+        private string _nombre;
         public ICollection<Membresia> Membresias = new List<Membresia>();
         public string Nombre
         {

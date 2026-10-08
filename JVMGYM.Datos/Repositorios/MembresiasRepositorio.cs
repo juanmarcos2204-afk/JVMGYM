@@ -27,6 +27,7 @@ namespace JVMGYM.Datos.Repositorios
             if (membresiaEnDb is null) throw new KeyNotFoundException($"No se encuentra un cliente con ID: {membresias.IdMembresia}");
             membresiaEnDb.Tipo = membresias.Tipo;
             membresiaEnDb.Precio = membresias.Precio;
+            membresiaEnDb.IdDuracionMembresia = membresias.IdDuracionMembresia;
 
             _context.SaveChanges();
         }
@@ -38,6 +39,12 @@ namespace JVMGYM.Datos.Repositorios
             _context.Membresias.Remove(membresiaEnDb);
             _context.SaveChanges();
 
+        }
+
+        public bool Existe(Membresia membresia)
+        {
+            return _context.Membresias.Any(m => m.Tipo == membresia.Tipo &&
+                m.IdMembresia != membresia.IdMembresia);
         }
 
         public Membresia? ObtenerPorId(int id)

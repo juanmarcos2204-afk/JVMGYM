@@ -13,6 +13,7 @@ namespace JVMGYM.Datos.EntityTypeConfigurations
         {
             builder.ToTable("DuracionesMembresias");
             builder.HasKey(dm => dm.IdDuracionMembresia);
+            builder.Property(dm => dm.Nombre).HasMaxLength(30);
         }
     }
 }

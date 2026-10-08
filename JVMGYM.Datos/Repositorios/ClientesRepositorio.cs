@@ -37,7 +37,6 @@ namespace JVMGYM.Datos.Repositorios
             if (clienteEnDb is null) throw new KeyNotFoundException($"No se encuentra un cliente con ID: {clienteId}");
             _context.Clientes.Remove(clienteEnDb);
             _context.SaveChanges();
-
         }
 
         public bool Existe(Cliente cliente)
