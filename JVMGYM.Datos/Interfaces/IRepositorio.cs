@@ -4,8 +4,8 @@ namespace JVMGYM.Datos.Interfaces
     {
         List<T> ObtenerTodos();
         T? ObtenerPorId(int id);
-        void Agregar(T entity);
-        void Editar(T entity);
+        void Agregar(T entidad);
+        void Editar(T entidad);
         void Eliminar(int id);
     }
 }

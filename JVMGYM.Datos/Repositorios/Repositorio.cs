@@ -24,34 +24,28 @@ namespace JVMGYM.Datos.Repositorios
             return _dbSet.Find(id);
         }
 
-        public virtual void Agregar(T entity)
+        public virtual void Agregar(T entidad)
         {
-            _dbSet.Add(entity);
+            _dbSet.Add(entidad);
         }
 
-        public virtual void Editar(T entity)
+        public virtual void Editar(T entidad)
         {
-            var entityType = _context.Model.FindEntityType(typeof(T))
-                ?? throw new InvalidOperationException($"No se encontró el modelo de {typeof(T).Name}.");
-            var primaryKey = entityType.FindPrimaryKey()
-                ?? throw new InvalidOperationException($"{typeof(T).Name} no tiene clave primaria.");
-
-            var nombrePropiedadId = primaryKey.Properties[0].Name;
-            var propiedadId = typeof(T).GetProperty(nombrePropiedadId)
-                ?? throw new InvalidOperationException($"No se encontró la propiedad {nombrePropiedadId} en {typeof(T).Name}.");
-            var id = (int)propiedadId.GetValue(entity)!;
-
-            var entidadEnDb = _dbSet.Find(id)
-                ?? throw new KeyNotFoundException($"No se encuentra {typeof(T).Name} con ID: {id}");
-
-            _context.Entry(entidadEnDb).CurrentValues.SetValues(entity);
+            var entidadEnDb = _dbSet.Find(entidad);
+            if (entidadEnDb is null)
+            {
+                throw new KeyNotFoundException($"No se encuentra {entidad}");
+            }
+            _context.Entry(entidadEnDb).CurrentValues.SetValues(entidad);
         }
 
         public virtual void Eliminar(int id)
         {
-            var entidadEnDb = _dbSet.Find(id)
-                ?? throw new KeyNotFoundException($"No se encuentra {typeof(T).Name} con ID: {id}");
-
+            var entidadEnDb = _dbSet.Find(id);
+            if (entidadEnDb is null)
+            {
+                throw new KeyNotFoundException($"No se encuentra entidad con ID {id}");
+            }
             _dbSet.Remove(entidadEnDb);
         }
     }
