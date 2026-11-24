@@ -1,17 +1,8 @@
-﻿using JVMGYM.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using JVMGYM.Entidades;
 
 namespace JVMGYM.Datos.Interfaces
 {
-    public interface IPagosRepositorio
+    public interface IPagosRepositorio : IRepositorio<Pago>
     {
-        List<Pago> ObtenerTodos();
-        Pago? ObtenerPorId(int id);
-        void Agregar(Pago pagos);
-        void Editar(Pago pagos);
-        void Eliminar(int pagosId);
-
     }
 }

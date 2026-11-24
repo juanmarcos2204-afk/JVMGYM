@@ -1,10 +1,14 @@
 using JVMGYM.Datos;
 using JVMGYM.Datos.Interfaces;
 using JVMGYM.Datos.Repositorios;
+using JVMGYM.Datos.UnitOfWork;
 using JVMGYM.Servicio;
 using JVMGYM.Servicio.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace JVMGYM.Windows
 {
@@ -37,25 +41,45 @@ namespace JVMGYM.Windows
                 ?? throw new InvalidOperationException(
                     "No se encontró la cadena de conexión.");
 
-            var options =
-                new DbContextOptionsBuilder<AppDbContext>()
-                    .UseSqlServer(connectionString)
-                    .Options;
+            var servicios = new ServiceCollection();
+            //TODO: Pasar todo a una capa
+            servicios
+                .AddDbContext<AppDbContext>(
+                    options => options.UseSqlServer(connectionString),
+                    ServiceLifetime.Scoped);
 
-            var context =
-                new AppDbContext(options);
-            //RÉPOS
-            IClientesRepositorio clienteRepositorio = new ClientesRepositorio(context);
-            IMembresiasRepositorio membresiaRepositorio = new MembresiasRepositorio(context);
-            IDuracionMembresiaRepositorio duracionMembresiaRepositorio = new DuracionMembresiaRepositorio(context);
-            //SERVICIOS
-            IClientesServicio clienteServicio = new ClientesServicio(clienteRepositorio);
-            IMembresiaServicio membresiaServicio = new MembresiaServicio(membresiaRepositorio);
-            IDuracionMembresiaServicio duracionMembresiaServicio = new DuracionMembresiaServicio(duracionMembresiaRepositorio);
+            servicios.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            Application.Run(new frmPrincipal(clienteServicio,
-                membresiaServicio,
-                duracionMembresiaServicio));
+            servicios.AddScoped<IClientesRepositorio, ClientesRepositorio>();
+            servicios.AddScoped<IMembresiasRepositorio, MembresiasRepositorio>();
+            servicios.AddScoped<IDuracionMembresiaRepositorio, DuracionMembresiaRepositorio>();
+            servicios.AddScoped<IMetodosDePagoRepositorio, MetodosDePagoRepositorio>();
+            servicios.AddScoped<IPagosRepositorio, PagosRepositorio>();
+            servicios.AddScoped<IClientesMembresiaRepositorio, ClientesMembresiaRepositorio>();
+
+            servicios.AddScoped<IClientesServicio, ClientesServicio>();
+            servicios.AddScoped<IMembresiaServicio, MembresiaServicio>();
+            servicios.AddScoped<IDuracionMembresiaServicio, DuracionMembresiaServicio>();
+            servicios.AddScoped<MetodoDePagoServicio>();
+
+            // Registro automático de formularios por reflexión
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var tiposFormularios = assembly.GetTypes()
+                .Where(t => typeof(Form).IsAssignableFrom(t) && !t.IsAbstract);
+
+            foreach (var tipoForm in tiposFormularios)
+            {
+                servicios.AddTransient(tipoForm);
+            }
+
+            using var serviceProvider = servicios.BuildServiceProvider();
+
+            using var scope = serviceProvider.CreateScope();
+            var frm = scope.ServiceProvider.GetRequiredService<frmPrincipal>();
+            frm.Text = "Sistema de Gimnasio";
+
+            Application.Run(frm);
         }
     }
 }

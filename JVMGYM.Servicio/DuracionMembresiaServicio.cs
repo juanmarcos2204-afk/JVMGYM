@@ -9,9 +9,11 @@ namespace JVMGYM.Servicio
     public class DuracionMembresiaServicio : IDuracionMembresiaServicio
     {
         private readonly IDuracionMembresiaRepositorio _duracionMembresiaRepositorio;
-        public DuracionMembresiaServicio(IDuracionMembresiaRepositorio duracionMembresiaRepositorio)
+        private readonly IUnitOfWork _unitOfWork;
+        public DuracionMembresiaServicio(IDuracionMembresiaRepositorio duracionMembresiaRepositorio, IUnitOfWork unitOfWork)
         {
             _duracionMembresiaRepositorio = duracionMembresiaRepositorio;
+            _unitOfWork = unitOfWork;
         }
         public void Agregar(DuracionMembresiaCreateDto duracionMembresiaCreateDto)
         {
@@ -19,6 +21,7 @@ namespace JVMGYM.Servicio
             try
             {
                 _duracionMembresiaRepositorio.Agregar(duracionMembresia);
+                _unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -44,6 +47,7 @@ namespace JVMGYM.Servicio
             try
             {
                 _duracionMembresiaRepositorio.Eliminar(id);
+                _unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {

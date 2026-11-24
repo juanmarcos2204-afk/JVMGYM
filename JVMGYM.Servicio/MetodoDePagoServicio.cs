@@ -9,10 +9,12 @@ namespace JVMGYM.Servicio
     public class MetodoDePagoServicio
     {
         private readonly IMetodosDePagoRepositorio _metodosDePagoRepositorio;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public MetodoDePagoServicio(IMetodosDePagoRepositorio metodosDePagoRepositorio)
+        public MetodoDePagoServicio(IMetodosDePagoRepositorio metodosDePagoRepositorio, IUnitOfWork unitOfWork)
         {
             _metodosDePagoRepositorio = metodosDePagoRepositorio;
+            _unitOfWork = unitOfWork;
         }
 
         public void Agregar(MetodosDePagoCreateDto metodosDePagoCreateDto)
@@ -21,6 +23,7 @@ namespace JVMGYM.Servicio
             try
             {
                 _metodosDePagoRepositorio.Agregar(metodosDePago);
+                _unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -36,6 +39,7 @@ namespace JVMGYM.Servicio
                 throw new ArgumentOutOfRangeException("El Id de la Membresia debe ser mayor a cero");
             if (metodosDePagoEditDto.Nombre.Equals(metodos.Nombre)) throw new ArgumentException("Ya existe esa misma membresia");
             _metodosDePagoRepositorio.Editar(metodos);
+            _unitOfWork.SaveChanges();
         }
 
         public void Eliminar(int metodoPagoId)
@@ -51,6 +55,7 @@ namespace JVMGYM.Servicio
             try
             {
                 _metodosDePagoRepositorio.Eliminar(metodoPagoId);
+                _unitOfWork.SaveChanges();
 
             }
             catch (Exception ex)

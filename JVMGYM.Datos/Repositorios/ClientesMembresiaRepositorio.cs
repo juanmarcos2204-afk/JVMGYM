@@ -1,21 +1,12 @@
-﻿using JVMGYM.Datos.Interfaces;
+using JVMGYM.Datos.Interfaces;
 using JVMGYM.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JVMGYM.Datos.Repositorios
 {
-    public class ClientesMembresiaRepositorio:IClientesMembresiaRepositorio
+    public class ClientesMembresiaRepositorio : Repositorio<ClientesMembresia>, IClientesMembresiaRepositorio
     {
-        private readonly AppDbContext _context;
-        public ClientesMembresiaRepositorio(AppDbContext context)
+        public ClientesMembresiaRepositorio(AppDbContext context) : base(context)
         {
-            _context = context;
-        }
-        public List<ClientesMembresia> ObtenerTodos()
-        {
-            return _context.ClientesMembresias.ToList();
         }
     }
 }

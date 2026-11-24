@@ -3,6 +3,7 @@ using JVMGYM.Servicio.Dtos.Clientes;
 using JVMGYM.Servicio.Dtos.Duracion_Membresia;
 using JVMGYM.Servicio.Dtos.Membresias;
 using JVMGYM.Servicio.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,11 +18,13 @@ namespace JVMGYM.Windows
     {
 
         private readonly IDuracionMembresiaServicio _duracionMembresiaServicio;
+        private readonly IServiceScopeFactory _scopeFactory;
         private BindingSource _bindingSource = new BindingSource();
-        public frmDuracionMembresias(IDuracionMembresiaServicio duracionMembresiaServicio)
+        public frmDuracionMembresias(IDuracionMembresiaServicio duracionMembresiaServicio, IServiceScopeFactory scopeFactory)
         {
             InitializeComponent();
             _duracionMembresiaServicio = duracionMembresiaServicio;
+            _scopeFactory = scopeFactory;
         }
 
         private void tsbCerrar_Click(object sender, EventArgs e)
@@ -47,26 +50,30 @@ namespace JVMGYM.Windows
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            using (var frm = new frmDuracionMembresiasAe { Text = "Ingreso de Duración de Membresias" })
+            using (var scope = _scopeFactory.CreateScope())
             {
-                DialogResult dr = frm.ShowDialog();
-                if (dr == DialogResult.Cancel) return;
-                DuracionMembresiaCreateDto duracionMembresiaCreateDto = frm.GetDuracionMembresia();
-                try
+                using (var frm = scope.ServiceProvider.GetRequiredService<frmDuracionMembresiasAe>())
                 {
-                    _duracionMembresiaServicio.Agregar(duracionMembresiaCreateDto);
-                    MessageBox.Show("Duración Membresia Añadida",
-                        "Mensaje",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    RecargarGrilla();
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message,
-                        "ERROR",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    frm.Text = "Ingreso de Duración de Membresias";
+                    DialogResult dr = frm.ShowDialog();
+                    if (dr == DialogResult.Cancel) return;
+                    DuracionMembresiaCreateDto duracionMembresiaCreateDto = frm.GetDuracionMembresia();
+                    try
+                    {
+                        _duracionMembresiaServicio.Agregar(duracionMembresiaCreateDto);
+                        MessageBox.Show("Duración Membresia Añadida",
+                            "Mensaje",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        RecargarGrilla();
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message,
+                            "ERROR",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
                 }
             }
         }

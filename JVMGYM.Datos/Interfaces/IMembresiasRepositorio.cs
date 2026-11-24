@@ -1,16 +1,9 @@
-﻿using JVMGYM.Entidades;
+using JVMGYM.Entidades;
 
 namespace JVMGYM.Datos.Interfaces
 {
-    public interface IMembresiasRepositorio
+    public interface IMembresiasRepositorio : IRepositorio<Membresia>
     {
-        List<Membresia> ObtenerTodos();
-        Membresia? ObtenerPorId(int id);
-        void Agregar(Membresia membresias);
-        void Editar(Membresia membresias);
-
-        //ELIMINAMOS REGISTROS POR ID
-        void Eliminar(int membresiaId);
-        bool Existe (Membresia membresia);
+        bool Existe(Membresia membresia);
     }
 }

@@ -11,10 +11,12 @@ namespace JVMGYM.Servicio
     public class MembresiaServicio : IMembresiaServicio
     {
         private readonly IMembresiasRepositorio _membresiasRepositorio;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public MembresiaServicio(IMembresiasRepositorio membresiasRepositorio)
+        public MembresiaServicio(IMembresiasRepositorio membresiasRepositorio, IUnitOfWork unitOfWork)
         {
             _membresiasRepositorio = membresiasRepositorio;
+            _unitOfWork = unitOfWork;
         }
 
         public void Agregar(MembresiaCreateDto membresiaCreateDto)
@@ -27,6 +29,7 @@ namespace JVMGYM.Servicio
             try
             {
                 _membresiasRepositorio.Agregar(membresia);
+                _unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -45,6 +48,7 @@ namespace JVMGYM.Servicio
                 throw new ArgumentException("Membresia ya existente");
             }
             _membresiasRepositorio.Editar(membresia);
+            _unitOfWork.SaveChanges();
         }
 
         public void Eliminar(int membresiaId)
@@ -60,6 +64,7 @@ namespace JVMGYM.Servicio
             try
             {
                 _membresiasRepositorio.Eliminar(membresiaId);
+                _unitOfWork.SaveChanges();
 
             }
             catch (Exception ex)
