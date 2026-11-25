@@ -13,6 +13,7 @@ namespace JVMGYM.Datos.EntityTypeConfigurations
         {
             builder.ToTable("MetodosDePago");
             builder.HasKey(mp => mp.IdMetodoPago);
+            builder.Property(mp => mp.Nombre).HasMaxLength(30).IsRequired();
         }
     }
 }

@@ -42,5 +42,15 @@ namespace JVMGYM.Windows
         {
             AbrirFormulario<frmDuracionMembresias>("Listado de Duración de Membresias");
         }
+
+        private void btnMetodosDePago_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<frmMetodosDePago>("Listado de Métodos de Pago");
+        }
+
+        private void btnPagos_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<frmPagos>("Listado de Pagos");
+        }
     }
 }

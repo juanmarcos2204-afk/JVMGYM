@@ -2,6 +2,7 @@
 using JVMGYM.Entidades;
 using JVMGYM.Servicio.Dtos.Clientes;
 using JVMGYM.Servicio.Dtos.Membresias;
+using JVMGYM.Servicio.Dtos.Metodos_de_pago;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
 namespace JVMGYM.Servicio
@@ -80,6 +81,18 @@ namespace JVMGYM.Servicio
             if (cliente is null) throw new ArgumentException(nameof(id), $"Id {id} no encontrado");
             ClienteEditDto clienteEditDto = cliente.ToEditDto();         
             return clienteEditDto;
+        }
+
+        public List<ClientesListDto> ObtenerDatosCombo()
+        {
+            var lista = _clienteRepositorio.ObtenerTodos().Select(c => c.ToListDto()).ToList();
+            lista.Insert(0, new ClientesListDto
+            {
+                IdCliente = 0,
+                Nombre = "Seleccione"
+            });
+            return lista;
+
         }
 
         public List<ClientesListDto> ObtenerTodos()

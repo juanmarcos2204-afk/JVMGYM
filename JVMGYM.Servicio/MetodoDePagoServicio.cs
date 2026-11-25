@@ -1,12 +1,13 @@
 ﻿using JVMGYM.Datos.Interfaces;
 using JVMGYM.Datos.Repositorios;
 using JVMGYM.Entidades;
-using JVMGYM.Servicio.Dtos.Membresias;
 using JVMGYM.Servicio.Dtos.Metodos_de_pago;
+using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
+
 namespace JVMGYM.Servicio
 {
-    public class MetodoDePagoServicio
+    public class MetodoDePagoServicio : IMetodoDePagoServicio
     {
         private readonly IMetodosDePagoRepositorio _metodosDePagoRepositorio;
         private readonly IUnitOfWork _unitOfWork;
@@ -27,18 +28,24 @@ namespace JVMGYM.Servicio
             }
             catch (Exception ex)
             {
-
                 throw new Exception($"Error al agregar un nuevo método de pago {ex.Message}");
             }
         }
 
         public void Editar(MetodosDePagoEditDto metodosDePagoEditDto)
         {
-            MetodosDePago metodos = metodosDePagoEditDto.ToEntidad();
-            if (metodosDePagoEditDto.idMetodoPago == 0)
-                throw new ArgumentOutOfRangeException("El Id de la Membresia debe ser mayor a cero");
-            if (metodosDePagoEditDto.Nombre.Equals(metodos.Nombre)) throw new ArgumentException("Ya existe esa misma membresia");
-            _metodosDePagoRepositorio.Editar(metodos);
+            MetodosDePago metodosDePago = metodosDePagoEditDto.ToEntidad();
+            if (metodosDePagoEditDto.IdMetodoPago == 0)
+            {
+                throw new ArgumentOutOfRangeException("El Id del método de pago debe ser mayor a cero");
+            }
+
+            if (_metodosDePagoRepositorio.Existe(metodosDePago))
+            {
+                throw new ArgumentException("Metodo de pago ya existente");
+            }
+
+            _metodosDePagoRepositorio.Editar(metodosDePago);
             _unitOfWork.SaveChanges();
         }
 
@@ -46,21 +53,27 @@ namespace JVMGYM.Servicio
         {
             if (metodoPagoId <= 0)
             {
-                throw new ArgumentOutOfRangeException("El Id del cliente no puede ser menor a cero");
+                throw new ArgumentOutOfRangeException("El Id del método de pago no puede ser menor a cero");
+            }
+
+            if (_metodosDePagoRepositorio.TieneRegistrosRelacionados(metodoPagoId))
+            {
+                throw new InvalidOperationException($"No se puede eliminar el método de pago {metodoPagoId} porque tiene pagos asociados.");
             }
 
             var metodo = _metodosDePagoRepositorio.ObtenerPorId(metodoPagoId);
             if (metodo is null)
+            {
                 throw new KeyNotFoundException("No se encontró el Id proporcionado");
+            }
+
             try
             {
                 _metodosDePagoRepositorio.Eliminar(metodoPagoId);
                 _unitOfWork.SaveChanges();
-
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
         }
@@ -74,14 +87,47 @@ namespace JVMGYM.Servicio
         {
             if (metodoPagoId <= 0)
             {
-                throw new ArgumentOutOfRangeException("El Id del cliente no puede ser menor a cero");
+                throw new ArgumentOutOfRangeException("El Id del método de pago no puede ser menor a cero");
             }
-            var metodosDePago = _metodosDePagoRepositorio.ObtenerPorId(metodoPagoId);
-            if (metodosDePago is null)
-                throw new KeyNotFoundException("No se encontró la membresia");
-            return metodosDePago.ToListDto();
 
+            var metodo = _metodosDePagoRepositorio.ObtenerPorId(metodoPagoId);
+            if (metodo is null)
+            {
+                throw new KeyNotFoundException("No se encontró el Id proporcionado");
+            }
+
+            return metodo.ToListDto();
         }
 
+        public MetodosDePagoEditDto ObtenerParaEditar(int metodoPagoId)
+        {
+            if (metodoPagoId <= 0)
+            {
+                throw new ArgumentException("El ID del método de pago debe ser un entero mayor a cero.", nameof(metodoPagoId));
+            }
+
+            var metodo = _metodosDePagoRepositorio.ObtenerPorId(metodoPagoId);
+            if (metodo is null)
+            {
+                throw new ArgumentException(nameof(metodoPagoId), $"Id {metodoPagoId} no encontrado");
+            }
+
+            return new MetodosDePagoEditDto
+            {
+                IdMetodoPago = metodo.IdMetodoPago,
+                Nombre = metodo.Nombre
+            };
+        }
+
+        public List<MetodoDePagoListDto> ObtenerDatosCombo()
+        {
+            var lista = _metodosDePagoRepositorio.ObtenerTodos().Select(m => m.ToListDto()).ToList();
+            lista.Insert(0, new MetodoDePagoListDto
+            {
+                IdMetodoPago = 0,
+                Nombre = "Seleccione"
+            });
+            return lista;
+        }
     }
 }

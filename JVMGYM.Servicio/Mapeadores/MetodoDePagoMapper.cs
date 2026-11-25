@@ -12,14 +12,15 @@ namespace JVMGYM.Servicio.Mapeadores
         {
             return new MetodosDePago
             {
-                Nombre = metodoDePagoCreateDto.Nombre,
+                Nombre = metodoDePagoCreateDto.Nombre
             };
         }
+
         public static MetodosDePago ToEntidad(this MetodosDePagoEditDto metodoDePagoEditDto)
         {
             return new MetodosDePago
             {
-                IdMetodoPago = metodoDePagoEditDto.idMetodoPago,
+                IdMetodoPago = metodoDePagoEditDto.IdMetodoPago,
                 Nombre = metodoDePagoEditDto.Nombre
             };
         }
@@ -33,5 +34,21 @@ namespace JVMGYM.Servicio.Mapeadores
             };
         }
 
+        public static MetodosDePagoCreateDto ToCreateDto(this MetodosDePagoEditDto metodoDePagoEditDto)
+        {
+            return new MetodosDePagoCreateDto
+            {
+                Nombre = metodoDePagoEditDto.Nombre
+            };
+        }
+
+        public static MetodosDePagoEditDto ToEditDto(this MetodosDePago metodosDePago)
+        {
+            return new MetodosDePagoEditDto
+            {
+                IdMetodoPago = metodosDePago.IdMetodoPago,
+                Nombre = metodosDePago.Nombre
+            };
+        }
     }
 }
