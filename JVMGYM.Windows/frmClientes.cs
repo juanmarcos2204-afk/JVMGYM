@@ -1,7 +1,9 @@
 ﻿using JVMGYM.Servicio;
 using JVMGYM.Servicio.Dtos.Clientes;
+using JVMGYM.Servicio.DTOs.Paginación;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
+using JVMGYM.Windows.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ namespace JVMGYM.Windows
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IClientesServicio _clientesServicio;
         private BindingSource _bindingSource = new BindingSource();
+        private EstadoNavegacion _estadoNavegacion = new(10);
         public frmClientes(IServiceScopeFactory scopeFactory, IClientesServicio clientesServicio)
         {
             InitializeComponent();
@@ -33,15 +36,35 @@ namespace JVMGYM.Windows
 
         private void RecargarGrilla()
         {
-            var resultado = _clientesServicio.ObtenerTodos();
-            MostrarDatosGrilla(resultado);
+            var paginaSolicitada = _estadoNavegacion.PaginaActual;
+            var resultado = _clientesServicio
+                .ObtenerPagina(paginaSolicitada,
+                _estadoNavegacion.CantidadPorPagina,
+                _estadoNavegacion.FiltroActivo, _estadoNavegacion.TextoBuscar);
+            _estadoNavegacion.Actualizar(resultado.TotalRegistros);
+            if (paginaSolicitada != _estadoNavegacion.PaginaActual)
+            {
+                resultado = _clientesServicio
+                    .ObtenerPagina(_estadoNavegacion.PaginaActual,
+                    _estadoNavegacion.CantidadPorPagina,
+                    _estadoNavegacion.FiltroActivo, _estadoNavegacion.TextoBuscar);
+                _estadoNavegacion.Actualizar(resultado.TotalRegistros);
+            }
+            MostrarDatosEnGrilla(resultado);
         }
 
-        private void MostrarDatosGrilla(List<ClientesListDto> resultado)
+        private void MostrarDatosEnGrilla(ResultadoPaginacionDto<ClientesListDto> resultado)
         {
-            _bindingSource.DataSource = resultado;
+            _bindingSource.DataSource = resultado.Items;
             dgvDatos.DataSource = _bindingSource;
-            lblCantidad.Text = resultado.Count.ToString();
+
+            lblCantidad.Text = _estadoNavegacion.TextoRegistros();
+
+            btnPrimero.Enabled = resultado.TieneRegistrosAnteriores;
+            btnAnterior.Enabled = resultado.TieneRegistrosAnteriores;
+            btnSiguiente.Enabled = resultado.TieneRegistrosSiguientes;
+            btnUltimo.Enabled = resultado.TieneRegistrosSiguientes;
+
         }
 
         private void tsbCerrar_Click(object sender, EventArgs e)
@@ -157,30 +180,49 @@ namespace JVMGYM.Windows
 
         private void activoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var resultado = _clientesServicio.FiltrarPorActivo(true);
-            MostrarDatosGrilla(resultado);
-            ManejarBotones(true);
+            _estadoNavegacion.FiltroActivo = true;
+            tsbFiltrar.BackColor = Color.Orange;
+            _estadoNavegacion.IrPrimera();
+            RecargarGrilla();
         }
         private void noActivoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var resultado = _clientesServicio.FiltrarPorActivo(false);
-            MostrarDatosGrilla(resultado);
-            ManejarBotones(true);
+            _estadoNavegacion.FiltroActivo = false;
+            tsbFiltrar.BackColor = Color.Orange;
+            _estadoNavegacion.IrPrimera();
+            RecargarGrilla();
 
-        }
-        private void ManejarBotones(bool filtrado)
-        {
-            tsbNuevo.Enabled = !filtrado;
-            tsbBorrar.Enabled = !filtrado;
-            tsbEditar.Enabled = !filtrado;
-
-            tsbFiltrar.BackColor = filtrado ? Color.Orange : SystemColors.Control;
         }
 
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
+            _estadoNavegacion.Inicializar();
+            tsbFiltrar.BackColor = SystemColors.Control;
             RecargarGrilla();
-            ManejarBotones(false);
+        }
+
+        private void btnPrimero_Click(object sender, EventArgs e)
+        {
+            _estadoNavegacion.IrPrimera();
+            RecargarGrilla();
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            _estadoNavegacion.IrAnterior();
+            RecargarGrilla();
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            _estadoNavegacion.IrSiguiente();
+            RecargarGrilla();
+        }
+
+        private void btnUltimo_Click(object sender, EventArgs e)
+        {
+            _estadoNavegacion.IrUltima();
+            RecargarGrilla();
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using JVMGYM.Datos.Interfaces;
 using JVMGYM.Entidades;
 using JVMGYM.Servicio.Dtos.Duracion_Membresia;
+using JVMGYM.Servicio.DTOs.Paginación;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
 
-namespace JVMGYM.Servicio
+namespace JVMGYM.Servicio.Servicios
 {
     public class DuracionMembresiaServicio : IDuracionMembresiaServicio
     {
@@ -69,6 +70,22 @@ namespace JVMGYM.Servicio
         {
             return _duracionMembresiaRepositorio.ObtenerTodos().Select(dm => dm.ToListDto()).ToList();
 
+        }
+
+        public ResultadoPaginacionDto<DuracionMembresiaListDto> ObtenerPagina(int paginaActual,
+            int cantidadPorPagina, bool? filtroActivo = null, string? textoBuscar = null)
+        {
+            var resultado = _duracionMembresiaRepositorio.ObtenerPagina(paginaActual,
+                cantidadPorPagina, filtroActivo, textoBuscar);
+            var listaDto = resultado.lista
+                    .Select(dm => dm.ToListDto()).ToList();
+            return new ResultadoPaginacionDto<DuracionMembresiaListDto>
+            {
+                Items = listaDto,
+                TotalRegistros = resultado.cantidadRegistros,
+                CantidadPorPagina = cantidadPorPagina,
+                PaginaActual = paginaActual
+            };
         }
     }
 }

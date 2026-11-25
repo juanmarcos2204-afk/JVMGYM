@@ -48,8 +48,12 @@
             colDNI = new DataGridViewTextBoxColumn();
             colFechaAlta = new DataGridViewTextBoxColumn();
             colActivo = new DataGridViewCheckBoxColumn();
+            btnUltimo = new Button();
             lblCantidad = new Label();
+            btnSiguiente = new Button();
             label1 = new Label();
+            btnAnterior = new Button();
+            btnPrimero = new Button();
             tsbClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -120,14 +124,14 @@
             // activoToolStripMenuItem
             // 
             activoToolStripMenuItem.Name = "activoToolStripMenuItem";
-            activoToolStripMenuItem.Size = new Size(224, 26);
+            activoToolStripMenuItem.Size = new Size(158, 26);
             activoToolStripMenuItem.Text = "Activo";
             activoToolStripMenuItem.Click += activoToolStripMenuItem_Click;
             // 
             // noActivoToolStripMenuItem
             // 
             noActivoToolStripMenuItem.Name = "noActivoToolStripMenuItem";
-            noActivoToolStripMenuItem.Size = new Size(224, 26);
+            noActivoToolStripMenuItem.Size = new Size(158, 26);
             noActivoToolStripMenuItem.Text = "No Activo";
             noActivoToolStripMenuItem.Click += noActivoToolStripMenuItem_Click;
             // 
@@ -161,6 +165,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.IsSplitterFixed = true;
             splitContainer1.Location = new Point(0, 75);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
@@ -171,17 +176,22 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(btnUltimo);
             splitContainer1.Panel2.Controls.Add(lblCantidad);
+            splitContainer1.Panel2.Controls.Add(btnSiguiente);
             splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Size = new Size(1059, 375);
-            splitContainer1.SplitterDistance = 299;
+            splitContainer1.Panel2.Controls.Add(btnAnterior);
+            splitContainer1.Panel2.Controls.Add(btnPrimero);
+            splitContainer1.Size = new Size(1059, 372);
+            splitContainer1.SplitterDistance = 288;
             splitContainer1.TabIndex = 1;
             // 
             // dgvDatos
             // 
             dgvDatos.AllowUserToAddRows = false;
             dgvDatos.AllowUserToDeleteRows = false;
-            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDatos.AllowUserToResizeRows = false;
+            dgvDatos.ColumnHeadersHeight = 28;
             dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colNombre, colApellido, colDNI, colFechaAlta, colActivo });
             dgvDatos.Dock = DockStyle.Fill;
             dgvDatos.Location = new Point(0, 0);
@@ -189,8 +199,10 @@
             dgvDatos.Name = "dgvDatos";
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
+            dgvDatos.RowTemplate.Height = 26;
+            dgvDatos.ScrollBars = ScrollBars.Vertical;
             dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDatos.Size = new Size(1059, 299);
+            dgvDatos.Size = new Size(1059, 288);
             dgvDatos.TabIndex = 0;
             // 
             // colId
@@ -248,33 +260,73 @@
             colActivo.Name = "colActivo";
             colActivo.ReadOnly = true;
             // 
+            // btnUltimo
+            // 
+            btnUltimo.Image = Properties.Resources.Ultimo;
+            btnUltimo.Location = new Point(610, 17);
+            btnUltimo.Name = "btnUltimo";
+            btnUltimo.Size = new Size(50, 45);
+            btnUltimo.TabIndex = 11;
+            btnUltimo.UseVisualStyleBackColor = true;
+            btnUltimo.Click += btnUltimo_Click;
+            // 
             // lblCantidad
             // 
             lblCantidad.AutoSize = true;
-            lblCantidad.Location = new Point(158, 21);
+            lblCantidad.Location = new Point(161, 30);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new Size(17, 20);
             lblCantidad.TabIndex = 1;
             lblCantidad.Text = "0";
             // 
+            // btnSiguiente
+            // 
+            btnSiguiente.Image = Properties.Resources.Siguiente;
+            btnSiguiente.Location = new Point(540, 17);
+            btnSiguiente.Name = "btnSiguiente";
+            btnSiguiente.Size = new Size(50, 45);
+            btnSiguiente.TabIndex = 12;
+            btnSiguiente.UseVisualStyleBackColor = true;
+            btnSiguiente.Click += btnSiguiente_Click;
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(29, 21);
+            label1.Location = new Point(32, 30);
             label1.Name = "label1";
             label1.Size = new Size(123, 20);
             label1.TabIndex = 0;
             label1.Text = "Cantidad Socios: ";
             // 
+            // btnAnterior
+            // 
+            btnAnterior.Image = Properties.Resources.Anterior;
+            btnAnterior.Location = new Point(470, 17);
+            btnAnterior.Name = "btnAnterior";
+            btnAnterior.Size = new Size(50, 45);
+            btnAnterior.TabIndex = 13;
+            btnAnterior.UseVisualStyleBackColor = true;
+            btnAnterior.Click += btnAnterior_Click;
+            // 
+            // btnPrimero
+            // 
+            btnPrimero.Image = Properties.Resources.Previous;
+            btnPrimero.Location = new Point(400, 17);
+            btnPrimero.Name = "btnPrimero";
+            btnPrimero.Size = new Size(50, 45);
+            btnPrimero.TabIndex = 14;
+            btnPrimero.UseVisualStyleBackColor = true;
+            btnPrimero.Click += btnPrimero_Click;
+            // 
             // frmClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1059, 450);
+            ClientSize = new Size(1059, 447);
             Controls.Add(splitContainer1);
             Controls.Add(tsbClientes);
-            MaximumSize = new Size(1077, 497);
-            MinimumSize = new Size(1077, 497);
+            MaximumSize = new Size(1077, 494);
+            MinimumSize = new Size(1077, 494);
             Name = "frmClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmClientes";
@@ -314,5 +366,9 @@
         private ToolStripDropDownButton tsbFiltrar;
         private ToolStripMenuItem activoToolStripMenuItem;
         private ToolStripMenuItem noActivoToolStripMenuItem;
+        private Button btnUltimo;
+        private Button btnSiguiente;
+        private Button btnAnterior;
+        private Button btnPrimero;
     }
 }

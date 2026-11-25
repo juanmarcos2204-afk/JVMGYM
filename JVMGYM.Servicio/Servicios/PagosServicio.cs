@@ -1,10 +1,11 @@
 using JVMGYM.Datos.Interfaces;
 using JVMGYM.Entidades;
 using JVMGYM.Servicio.Dtos.Pagos;
+using JVMGYM.Servicio.DTOs.Paginación;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
 
-namespace JVMGYM.Servicio
+namespace JVMGYM.Servicio.Servicios
 {
     public class PagosServicio : IPagosServicio
     {
@@ -102,6 +103,22 @@ namespace JVMGYM.Servicio
             }
 
             return pago.ToEditDto();
+        }
+
+        public ResultadoPaginacionDto<PagoListDto> ObtenerPagina(int paginaActual,
+            int cantidadPorPagina, bool? filtroActivo = null, string? textoBuscar = null)
+        {
+            var resultado = _pagosRepositorio.ObtenerPagina(paginaActual,
+                cantidadPorPagina, filtroActivo, textoBuscar);
+            var listaDto = resultado.lista
+                    .Select(p => p.ToListDto()).ToList();
+            return new ResultadoPaginacionDto<PagoListDto>
+            {
+                Items = listaDto,
+                TotalRegistros = resultado.cantidadRegistros,
+                CantidadPorPagina = cantidadPorPagina,
+                PaginaActual = paginaActual
+            };
         }
     }
 }

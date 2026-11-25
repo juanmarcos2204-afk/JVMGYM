@@ -2,10 +2,11 @@
 using JVMGYM.Datos.Repositorios;
 using JVMGYM.Entidades;
 using JVMGYM.Servicio.Dtos.Metodos_de_pago;
+using JVMGYM.Servicio.DTOs.Paginación;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
 
-namespace JVMGYM.Servicio
+namespace JVMGYM.Servicio.Servicios
 {
     public class MetodoDePagoServicio : IMetodoDePagoServicio
     {
@@ -128,6 +129,22 @@ namespace JVMGYM.Servicio
                 Nombre = "Seleccione"
             });
             return lista;
+        }
+
+        public ResultadoPaginacionDto<MetodoDePagoListDto> ObtenerPagina(int paginaActual,
+            int cantidadPorPagina, bool? filtroActivo = null, string? textoBuscar = null)
+        {
+            var resultado = _metodosDePagoRepositorio.ObtenerPagina(paginaActual,
+                cantidadPorPagina, filtroActivo, textoBuscar);
+            var listaDto = resultado.lista
+                    .Select(m => m.ToListDto()).ToList();
+            return new ResultadoPaginacionDto<MetodoDePagoListDto>
+            {
+                Items = listaDto,
+                TotalRegistros = resultado.cantidadRegistros,
+                CantidadPorPagina = cantidadPorPagina,
+                PaginaActual = paginaActual
+            };
         }
     }
 }

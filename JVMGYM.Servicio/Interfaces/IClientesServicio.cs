@@ -1,4 +1,6 @@
-﻿using JVMGYM.Servicio.Dtos.Clientes;
+﻿using JVMGYM.Entidades;
+using JVMGYM.Servicio.Dtos.Clientes;
+using JVMGYM.Servicio.DTOs.Paginación;
 
 namespace JVMGYM.Servicio.Interfaces
 {
@@ -11,5 +13,8 @@ namespace JVMGYM.Servicio.Interfaces
         List<ClientesListDto> ObtenerDatosCombo();
         List<ClientesListDto> FiltrarPorActivo(bool activo);
         List<ClientesListDto> ObtenerTodos();
+        ResultadoPaginacionDto<ClientesListDto> ObtenerPagina(int paginaActual,
+            int cantidadPorPagina, bool? filtroActivo = null,
+            string? textoBuscar = null);
     }
 }
