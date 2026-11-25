@@ -1,16 +1,9 @@
-﻿using JVMGYM.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using JVMGYM.Entidades;
 
 namespace JVMGYM.Datos.Interfaces
 {
-    public interface IDuracionMembresiaRepositorio
+    public interface IDuracionMembresiaRepositorio : IRepositorio<DuracionMembresia>
     {
-        List<DuracionMembresia> ObtenerTodos();
-        void Agregar(DuracionMembresia duracionMembresia);
-        void Eliminar(int id);
-        DuracionMembresia? ObtenerPorId(int id);
         bool TieneRegistrosRelacionados(int id);
     }
 }

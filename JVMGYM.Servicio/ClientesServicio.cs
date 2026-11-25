@@ -9,9 +9,11 @@ namespace JVMGYM.Servicio
     public class ClientesServicio : IClientesServicio
     {
         private readonly IClientesRepositorio _clienteRepositorio;
-        public ClientesServicio(IClientesRepositorio clientesRepositorio)
+        private readonly IUnitOfWork _unitOfWork;
+        public ClientesServicio(IClientesRepositorio clientesRepositorio, IUnitOfWork unitOfWork)
         {
             _clienteRepositorio = clientesRepositorio;
+            _unitOfWork = unitOfWork;
         }
         public void Agregar(ClienteCreateDto clienteCreateDto)
         {
@@ -23,6 +25,7 @@ namespace JVMGYM.Servicio
             try
             {
                 _clienteRepositorio.Agregar(clientes);
+                _unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -39,6 +42,7 @@ namespace JVMGYM.Servicio
                 throw new ArgumentException("Cliente ya existente");
             }
             _clienteRepositorio.Editar(clientes);
+            _unitOfWork.SaveChanges();
         }
         public void Eliminar(int clienteId)
         {
@@ -55,6 +59,7 @@ namespace JVMGYM.Servicio
             try
             {
                 _clienteRepositorio.Eliminar(clienteId);
+                _unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {

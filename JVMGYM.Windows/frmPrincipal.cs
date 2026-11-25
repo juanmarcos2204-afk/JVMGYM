@@ -1,30 +1,26 @@
-﻿using JVMGYM.Datos.Interfaces;
-using JVMGYM.Datos.Repositorios;
-using JVMGYM.Servicio;
-using JVMGYM.Servicio.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace JVMGYM.Windows
 {
     public partial class frmPrincipal : Form
     {
-        private readonly IClientesServicio _clientesServicio;
-        private readonly IMembresiaServicio _membresiaServicio;
-        private readonly IDuracionMembresiaServicio _duracionMembresiaServicio;
-        public frmPrincipal(IClientesServicio clientesServicio,
-            IMembresiaServicio membresiaServicio,
-            IDuracionMembresiaServicio duracionMembresiaServicio)
+        private readonly IServiceScopeFactory _scopeFactory;
+        public frmPrincipal(IServiceScopeFactory scopeFactory)
         {
             InitializeComponent();
-            _clientesServicio = clientesServicio;
-            _membresiaServicio = membresiaServicio;
-            _duracionMembresiaServicio = duracionMembresiaServicio;
+            _scopeFactory = scopeFactory;
+        }
+
+        private void AbrirFormulario<TForm>(string titulo) where TForm : Form
+        {
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                using (var frm = scope.ServiceProvider.GetRequiredService<TForm>())
+                {
+                    frm.Text = titulo;
+                    frm.ShowDialog();
+                }
+            }
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -34,26 +30,17 @@ namespace JVMGYM.Windows
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            using (var frm = new frmClientes(_clientesServicio) { Text = "Listado de Clientes" })
-            {
-                frm.ShowDialog();
-            }
+            AbrirFormulario<frmClientes>("Listado de Clientes");
         }
 
         private void btnMembresias_Click(object sender, EventArgs e)
         {
-            using (var frm = new frmMembresias(_membresiaServicio, _duracionMembresiaServicio) { Text = "Listado de Membresias" })
-            {
-                frm.ShowDialog();
-            }
+            AbrirFormulario<frmMembresias>("Listado de Membresias");
         }
 
         private void btnDuracionMembresia_Click(object sender, EventArgs e)
         {
-            using (var frm = new frmDuracionMembresias(_duracionMembresiaServicio) { Text = "Listado de Duración de Membresias"})
-            {
-                frm.ShowDialog();
-            }
+            AbrirFormulario<frmDuracionMembresias>("Listado de Duración de Membresias");
         }
     }
 }

@@ -3,6 +3,7 @@ using JVMGYM.Servicio.Dtos.Clientes;
 using JVMGYM.Servicio.Dtos.Membresias;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,13 +18,16 @@ namespace JVMGYM.Windows
     {
         private readonly IMembresiaServicio _membresiaServicio;
         private readonly IDuracionMembresiaServicio _duracionMembresiaServicio;
+        private readonly IServiceScopeFactory _scopeFactory;
         private BindingSource _bindingSource = new BindingSource();
         public frmMembresias(IMembresiaServicio membresiaServicio,
-            IDuracionMembresiaServicio duracionMembresiaServicio)
+            IDuracionMembresiaServicio duracionMembresiaServicio,
+            IServiceScopeFactory scopeFactory)
         {
             InitializeComponent();
             _membresiaServicio = membresiaServicio;
             _duracionMembresiaServicio = duracionMembresiaServicio;
+            _scopeFactory = scopeFactory;
         }
 
         private void tsbCerrar_Click(object sender, EventArgs e)
@@ -51,30 +55,33 @@ namespace JVMGYM.Windows
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            using (var frm = new frmMembresiasAe(_duracionMembresiaServicio) { Text = "Ingreso de Membresia" })
+            using (var scope = _scopeFactory.CreateScope())
             {
-                DialogResult dr = frm.ShowDialog();
-                if (dr == DialogResult.Cancel) return;
-                MembresiaEditDto membresiaEditDto = frm.GetMembresia();
-                MembresiaCreateDto membresiaCreateDto = membresiaEditDto.ToCreateDto();
-                try
+                using (var frm = scope.ServiceProvider.GetRequiredService<frmMembresiasAe>())
                 {
-                    _membresiaServicio.Agregar(membresiaCreateDto);
-                    MessageBox.Show("Membresia Añadida",
-                        "Mensaje",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    RecargarGrilla();
+                    frm.Text = "Ingreso de Membresia";
+                    DialogResult dr = frm.ShowDialog();
+                    if (dr == DialogResult.Cancel) return;
+                    MembresiaEditDto membresiaEditDto = frm.GetMembresia();
+                    MembresiaCreateDto membresiaCreateDto = membresiaEditDto.ToCreateDto();
+                    try
+                    {
+                        _membresiaServicio.Agregar(membresiaCreateDto);
+                        MessageBox.Show("Membresia Añadida",
+                            "Mensaje",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        RecargarGrilla();
 
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message,
+                            "ERROR",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
                 }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message,
-                        "ERROR",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-
             }
         }
         private void tsbBorrar_Click(object sender, EventArgs e)
@@ -116,35 +123,39 @@ namespace JVMGYM.Windows
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            using (var frm = new frmMembresiasAe(_duracionMembresiaServicio) { Text = "Editar Membresia" })
+            using (var scope = _scopeFactory.CreateScope())
             {
-                frm.SetMembresia(membresiaEditDto!);
-                DialogResult dr = frm.ShowDialog();
-                if (dr == DialogResult.Cancel) return;
-                membresiaEditDto = frm.GetMembresia();
-                if (membresiaEditDto is null) return;
-                try
+                using (var frm = scope.ServiceProvider.GetRequiredService<frmMembresiasAe>())
                 {
-                    _membresiaServicio.Editar(membresiaEditDto);
-                    int editadoId = membresiaEditDto.IdMembresia;
-                    RecargarGrilla();
-                    var editadoMembresia = _bindingSource.List
-                            .Cast<MembresiaListDto>()
-                            .FirstOrDefault(m => m.IdMembresia == editadoId);
-                    _bindingSource.Position = _bindingSource.IndexOf(editadoMembresia);
-                    MessageBox.Show("Membresia editada",
-                        "Mensaje",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message,
+                    frm.Text = "Editar Membresia";
+                    frm.SetMembresia(membresiaEditDto!);
+                    DialogResult dr = frm.ShowDialog();
+                    if (dr == DialogResult.Cancel) return;
+                    membresiaEditDto = frm.GetMembresia();
+                    if (membresiaEditDto is null) return;
+                    try
+                    {
+                        _membresiaServicio.Editar(membresiaEditDto);
+                        int editadoId = membresiaEditDto.IdMembresia;
+                        RecargarGrilla();
+                        var editadoMembresia = _bindingSource.List
+                                .Cast<MembresiaListDto>()
+                                .FirstOrDefault(m => m.IdMembresia == editadoId);
+                        _bindingSource.Position = _bindingSource.IndexOf(editadoMembresia);
+                        MessageBox.Show("Membresia editada",
+                            "Mensaje",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message,
                          "Error",
                          MessageBoxButtons.OK,
                          MessageBoxIcon.Error);
-                }
+                    }
 
+                }
             }
 
         }
