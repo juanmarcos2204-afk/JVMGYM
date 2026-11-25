@@ -60,7 +60,8 @@ namespace JVMGYM.Windows
             servicios.AddScoped<IClientesServicio, ClientesServicio>();
             servicios.AddScoped<IMembresiaServicio, MembresiaServicio>();
             servicios.AddScoped<IDuracionMembresiaServicio, DuracionMembresiaServicio>();
-            servicios.AddScoped<MetodoDePagoServicio>();
+            servicios.AddScoped<IMetodoDePagoServicio, MetodoDePagoServicio>();
+            servicios.AddScoped<IPagosServicio, PagosServicio>();
 
             // Registro automático de formularios por reflexión
             var assembly = Assembly.GetExecutingAssembly();

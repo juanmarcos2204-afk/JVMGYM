@@ -8,5 +8,16 @@ namespace JVMGYM.Datos.Repositorios
         public MetodosDePagoRepositorio(AppDbContext context) : base(context)
         {
         }
+
+        public bool Existe(MetodosDePago metodosDePago)
+        {
+            return _context.MetodosDePagos.Any(m => m.Nombre == metodosDePago.Nombre &&
+                m.IdMetodoPago != metodosDePago.IdMetodoPago);
+        }
+
+        public bool TieneRegistrosRelacionados(int id)
+        {
+            return _context.Pagos.Any(p => p.IdMetodoPago == id);
+        }
     }
 }

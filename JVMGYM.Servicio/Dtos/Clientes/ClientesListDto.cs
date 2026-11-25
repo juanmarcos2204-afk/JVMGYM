@@ -12,5 +12,10 @@ namespace JVMGYM.Servicio.Dtos.Clientes
         public string DNI { get; set; } = null!;
         public DateOnly FechaAlta { get; set; }
         public bool Activo { get; set; }
+
+        public string NombreCompleto
+        {
+            get { return $"{Nombre} {Apellido}".Trim(); }
+        }
     }
 }

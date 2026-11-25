@@ -23,6 +23,8 @@ namespace JVMGYM.Windows
             InitializeComponent();
             _scopeFactory = scopeFactory;
             _clientesServicio = clientesServicio;
+
+            dgvDatos.AutoGenerateColumns = false;
         }
         private void frmClientes_Load(object sender, EventArgs e)
         {

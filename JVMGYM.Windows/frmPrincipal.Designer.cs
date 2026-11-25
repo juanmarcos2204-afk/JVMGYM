@@ -31,6 +31,9 @@
             btnClientes = new Button();
             btnMembresias = new Button();
             panelLateral = new Panel();
+            btnPagos = new Button();
+            btnMetodosDePago = new Button();
+            btnDuracionMembresia = new Button();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panelDerecho = new Panel();
@@ -39,7 +42,6 @@
             label2 = new Label();
             btnCerrarSesion = new Button();
             lblFecha = new Label();
-            btnDuracionMembresia = new Button();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelDerecho.SuspendLayout();
@@ -82,6 +84,8 @@
             // panelLateral
             // 
             panelLateral.BackColor = Color.DarkGreen;
+            panelLateral.Controls.Add(btnPagos);
+            panelLateral.Controls.Add(btnMetodosDePago);
             panelLateral.Controls.Add(btnDuracionMembresia);
             panelLateral.Controls.Add(btnMembresias);
             panelLateral.Controls.Add(label1);
@@ -90,8 +94,59 @@
             panelLateral.Dock = DockStyle.Left;
             panelLateral.Location = new Point(0, 0);
             panelLateral.Name = "panelLateral";
-            panelLateral.Size = new Size(250, 493);
+            panelLateral.Size = new Size(250, 705);
             panelLateral.TabIndex = 3;
+            // 
+            // btnPagos
+            // 
+            btnPagos.AutoSize = true;
+            btnPagos.BackColor = Color.MediumSeaGreen;
+            btnPagos.Cursor = Cursors.Hand;
+            btnPagos.FlatAppearance.BorderSize = 0;
+            btnPagos.FlatStyle = FlatStyle.Flat;
+            btnPagos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPagos.ForeColor = Color.White;
+            btnPagos.Location = new Point(40, 603);
+            btnPagos.Name = "btnPagos";
+            btnPagos.Size = new Size(170, 70);
+            btnPagos.TabIndex = 2;
+            btnPagos.Text = "PAGOS";
+            btnPagos.UseVisualStyleBackColor = false;
+            btnPagos.Click += btnPagos_Click;
+            // 
+            // btnMetodosDePago
+            // 
+            btnMetodosDePago.AutoSize = true;
+            btnMetodosDePago.BackColor = Color.MediumSeaGreen;
+            btnMetodosDePago.Cursor = Cursors.Hand;
+            btnMetodosDePago.FlatAppearance.BorderSize = 0;
+            btnMetodosDePago.FlatStyle = FlatStyle.Flat;
+            btnMetodosDePago.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnMetodosDePago.ForeColor = Color.White;
+            btnMetodosDePago.Location = new Point(40, 493);
+            btnMetodosDePago.Name = "btnMetodosDePago";
+            btnMetodosDePago.Size = new Size(170, 70);
+            btnMetodosDePago.TabIndex = 2;
+            btnMetodosDePago.Text = "METODOS DE\r\nPAGO";
+            btnMetodosDePago.UseVisualStyleBackColor = false;
+            btnMetodosDePago.Click += btnMetodosDePago_Click;
+            // 
+            // btnDuracionMembresia
+            // 
+            btnDuracionMembresia.AutoSize = true;
+            btnDuracionMembresia.BackColor = Color.MediumSeaGreen;
+            btnDuracionMembresia.Cursor = Cursors.Hand;
+            btnDuracionMembresia.FlatAppearance.BorderSize = 0;
+            btnDuracionMembresia.FlatStyle = FlatStyle.Flat;
+            btnDuracionMembresia.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDuracionMembresia.ForeColor = Color.White;
+            btnDuracionMembresia.Location = new Point(40, 376);
+            btnDuracionMembresia.Name = "btnDuracionMembresia";
+            btnDuracionMembresia.Size = new Size(170, 70);
+            btnDuracionMembresia.TabIndex = 2;
+            btnDuracionMembresia.Text = "DURACION \r\nMEMBRESIAS";
+            btnDuracionMembresia.UseVisualStyleBackColor = false;
+            btnDuracionMembresia.Click += btnDuracionMembresia_Click;
             // 
             // label1
             // 
@@ -127,13 +182,13 @@
             panelDerecho.Dock = DockStyle.Fill;
             panelDerecho.Location = new Point(250, 0);
             panelDerecho.Name = "panelDerecho";
-            panelDerecho.Size = new Size(827, 493);
+            panelDerecho.Size = new Size(827, 705);
             panelDerecho.TabIndex = 4;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(302, 269);
+            label4.Location = new Point(300, 376);
             label4.Name = "label4";
             label4.Size = new Size(258, 20);
             label4.TabIndex = 3;
@@ -142,7 +197,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(302, 228);
+            label3.Location = new Point(300, 335);
             label3.Name = "label3";
             label3.Size = new Size(229, 20);
             label3.TabIndex = 3;
@@ -181,28 +236,11 @@
             lblFecha.TabIndex = 0;
             lblFecha.Text = "01/01/2026";
             // 
-            // btnDuracionMembresia
-            // 
-            btnDuracionMembresia.AutoSize = true;
-            btnDuracionMembresia.BackColor = Color.MediumSeaGreen;
-            btnDuracionMembresia.Cursor = Cursors.Hand;
-            btnDuracionMembresia.FlatAppearance.BorderSize = 0;
-            btnDuracionMembresia.FlatStyle = FlatStyle.Flat;
-            btnDuracionMembresia.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDuracionMembresia.ForeColor = Color.White;
-            btnDuracionMembresia.Location = new Point(40, 385);
-            btnDuracionMembresia.Name = "btnDuracionMembresia";
-            btnDuracionMembresia.Size = new Size(170, 70);
-            btnDuracionMembresia.TabIndex = 2;
-            btnDuracionMembresia.Text = "DURACION \r\nMEMBRESIAS";
-            btnDuracionMembresia.UseVisualStyleBackColor = false;
-            btnDuracionMembresia.Click += btnDuracionMembresia_Click;
-            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1077, 493);
+            ClientSize = new Size(1077, 705);
             Controls.Add(panelDerecho);
             Controls.Add(panelLateral);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -230,5 +268,7 @@
         private Label label4;
         private Label label3;
         private Button btnDuracionMembresia;
+        private Button btnMetodosDePago;
+        private Button btnPagos;
     }
 }

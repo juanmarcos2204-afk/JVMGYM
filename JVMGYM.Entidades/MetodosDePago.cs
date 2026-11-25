@@ -7,7 +7,7 @@
 
         public string Nombre
         {
-            get { return _nombre = null!; }
+            get { return _nombre; }
             set
             {
                 if (string.IsNullOrEmpty(value))

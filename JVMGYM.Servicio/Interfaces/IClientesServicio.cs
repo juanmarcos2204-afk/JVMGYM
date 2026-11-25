@@ -8,7 +8,8 @@ namespace JVMGYM.Servicio.Interfaces
         void Editar(ClienteEditDto clienteEditDto);
         ClienteEditDto ObtenerParaEditar(int id);
         void Eliminar(int clienteId);
-        List<ClientesListDto> ObtenerTodos();
+        List<ClientesListDto> ObtenerDatosCombo();
         List<ClientesListDto> FiltrarPorActivo(bool activo);
+        List<ClientesListDto> ObtenerTodos();
     }
 }
