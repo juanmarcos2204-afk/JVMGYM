@@ -33,13 +33,18 @@ namespace JVMGYM.Windows
             tsbEditar = new ToolStripButton();
             tsbBorrar = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
+            tsbActualizar = new ToolStripButton();
             tsbCerrar = new ToolStripButton();
             splitContainer1 = new SplitContainer();
             dgvDatos = new DataGridView();
             colId = new DataGridViewTextBoxColumn();
             colNombre = new DataGridViewTextBoxColumn();
+            btnUltimo = new Button();
             lblCantidad = new Label();
+            btnSiguiente = new Button();
             label1 = new Label();
+            btnAnterior = new Button();
+            btnPrimero = new Button();
             tsbMetodosDePago.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -51,7 +56,7 @@ namespace JVMGYM.Windows
             // tsbMetodosDePago
             // 
             tsbMetodosDePago.ImageScalingSize = new Size(20, 20);
-            tsbMetodosDePago.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbEditar, tsbBorrar, toolStripSeparator1, tsbCerrar });
+            tsbMetodosDePago.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbEditar, tsbBorrar, toolStripSeparator1, tsbActualizar, tsbCerrar });
             tsbMetodosDePago.Location = new Point(0, 0);
             tsbMetodosDePago.Name = "tsbMetodosDePago";
             tsbMetodosDePago.Size = new Size(1059, 75);
@@ -96,6 +101,17 @@ namespace JVMGYM.Windows
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 75);
             // 
+            // tsbActualizar
+            // 
+            tsbActualizar.Image = Properties.Resources.Refresh;
+            tsbActualizar.ImageScaling = ToolStripItemImageScaling.None;
+            tsbActualizar.ImageTransparentColor = Color.Magenta;
+            tsbActualizar.Name = "tsbActualizar";
+            tsbActualizar.Size = new Size(79, 72);
+            tsbActualizar.Text = "&Actualizar";
+            tsbActualizar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbActualizar.Click += tsbActualizar_Click;
+            // 
             // tsbCerrar
             // 
             tsbCerrar.Image = Properties.Resources.Cancel;
@@ -120,17 +136,25 @@ namespace JVMGYM.Windows
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(btnUltimo);
             splitContainer1.Panel2.Controls.Add(lblCantidad);
+            splitContainer1.Panel2.Controls.Add(btnSiguiente);
             splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Size = new Size(1059, 375);
-            splitContainer1.SplitterDistance = 299;
+            splitContainer1.Panel2.Controls.Add(btnAnterior);
+            splitContainer1.Panel2.Controls.Add(btnPrimero);
+            splitContainer1.Size = new Size(1059, 372);
+            splitContainer1.SplitterDistance = 288;
+            splitContainer1.IsSplitterFixed = true;
             splitContainer1.TabIndex = 1;
             // 
             // dgvDatos
             // 
             dgvDatos.AllowUserToAddRows = false;
             dgvDatos.AllowUserToDeleteRows = false;
-            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDatos.AllowUserToResizeRows = false;
+            dgvDatos.AutoGenerateColumns = false;
+            dgvDatos.ColumnHeadersHeight = 28;
+            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colNombre });
             dgvDatos.Dock = DockStyle.Fill;
             dgvDatos.Location = new Point(0, 0);
@@ -138,8 +162,10 @@ namespace JVMGYM.Windows
             dgvDatos.Name = "dgvDatos";
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
+            dgvDatos.RowTemplate.Height = 26;
+            dgvDatos.ScrollBars = ScrollBars.Vertical;
             dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDatos.Size = new Size(1059, 299);
+            dgvDatos.Size = new Size(1059, 288);
             dgvDatos.TabIndex = 0;
             // 
             // colId
@@ -161,33 +187,73 @@ namespace JVMGYM.Windows
             colNombre.Name = "colNombre";
             colNombre.ReadOnly = true;
             // 
+            // btnUltimo
+            // 
+            btnUltimo.Image = Properties.Resources.Ultimo;
+            btnUltimo.Location = new Point(610, 17);
+            btnUltimo.Name = "btnUltimo";
+            btnUltimo.Size = new Size(50, 45);
+            btnUltimo.TabIndex = 4;
+            btnUltimo.UseVisualStyleBackColor = true;
+            btnUltimo.Click += btnUltimo_Click;
+            // 
             // lblCantidad
             // 
             lblCantidad.AutoSize = true;
-            lblCantidad.Location = new Point(232, 21);
+            lblCantidad.Location = new Point(235, 30);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new Size(17, 20);
-            lblCantidad.TabIndex = 1;
+            lblCantidad.TabIndex = 5;
             lblCantidad.Text = "0";
+            // 
+            // btnSiguiente
+            // 
+            btnSiguiente.Image = Properties.Resources.Siguiente;
+            btnSiguiente.Location = new Point(540, 17);
+            btnSiguiente.Name = "btnSiguiente";
+            btnSiguiente.Size = new Size(50, 45);
+            btnSiguiente.TabIndex = 3;
+            btnSiguiente.UseVisualStyleBackColor = true;
+            btnSiguiente.Click += btnSiguiente_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(29, 21);
+            label1.Location = new Point(32, 30);
             label1.Name = "label1";
             label1.Size = new Size(197, 20);
             label1.TabIndex = 0;
             label1.Text = "Cantidad Metodos de Pago: ";
             // 
+            // btnAnterior
+            // 
+            btnAnterior.Image = Properties.Resources.Anterior;
+            btnAnterior.Location = new Point(470, 17);
+            btnAnterior.Name = "btnAnterior";
+            btnAnterior.Size = new Size(50, 45);
+            btnAnterior.TabIndex = 2;
+            btnAnterior.UseVisualStyleBackColor = true;
+            btnAnterior.Click += btnAnterior_Click;
+            // 
+            // btnPrimero
+            // 
+            btnPrimero.Image = Properties.Resources.Previous;
+            btnPrimero.Location = new Point(400, 17);
+            btnPrimero.Name = "btnPrimero";
+            btnPrimero.Size = new Size(50, 45);
+            btnPrimero.TabIndex = 1;
+            btnPrimero.UseVisualStyleBackColor = true;
+            btnPrimero.Click += btnPrimero_Click;
+            // 
             // frmMetodosDePago
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1059, 450);
+            ClientSize = new Size(1059, 447);
             Controls.Add(splitContainer1);
             Controls.Add(tsbMetodosDePago);
-            MaximumSize = new Size(1077, 497);
-            MinimumSize = new Size(1077, 497);
+            MaximumSize = new Size(1077, 494);
+            MinimumSize = new Size(1077, 494);
             Name = "frmMetodosDePago";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmMetodosDePago";
@@ -211,6 +277,7 @@ namespace JVMGYM.Windows
         private ToolStripButton tsbEditar;
         private ToolStripButton tsbBorrar;
         private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton tsbActualizar;
         private ToolStripButton tsbCerrar;
         private SplitContainer splitContainer1;
         private DataGridView dgvDatos;
@@ -218,5 +285,9 @@ namespace JVMGYM.Windows
         private Label label1;
         private DataGridViewTextBoxColumn colId;
         private DataGridViewTextBoxColumn colNombre;
+        private Button btnUltimo;
+        private Button btnSiguiente;
+        private Button btnAnterior;
+        private Button btnPrimero;
     }
 }

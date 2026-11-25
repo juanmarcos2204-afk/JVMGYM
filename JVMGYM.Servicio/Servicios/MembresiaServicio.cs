@@ -3,10 +3,11 @@ using JVMGYM.Datos.Repositorios;
 using JVMGYM.Entidades;
 using JVMGYM.Servicio.Dtos.Clientes;
 using JVMGYM.Servicio.Dtos.Membresias;
+using JVMGYM.Servicio.DTOs.Paginación;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
 
-namespace JVMGYM.Servicio
+namespace JVMGYM.Servicio.Servicios
 {
     public class MembresiaServicio : IMembresiaServicio
     {
@@ -100,6 +101,22 @@ namespace JVMGYM.Servicio
             if (membresia is null) throw new ArgumentException(nameof(id), $"Id {id} no encontrado");
             MembresiaEditDto membresiaEditDto = membresia.ToEditDto();
             return membresiaEditDto;
+        }
+
+        public ResultadoPaginacionDto<MembresiaListDto> ObtenerPagina(int paginaActual,
+            int cantidadPorPagina, bool? filtroActivo = null, string? textoBuscar = null)
+        {
+            var resultado = _membresiasRepositorio.ObtenerPagina(paginaActual,
+                cantidadPorPagina, filtroActivo, textoBuscar);
+            var listaDto = resultado.lista
+                    .Select(m => m.ToListDto()).ToList();
+            return new ResultadoPaginacionDto<MembresiaListDto>
+            {
+                Items = listaDto,
+                TotalRegistros = resultado.cantidadRegistros,
+                CantidadPorPagina = cantidadPorPagina,
+                PaginaActual = paginaActual
+            };
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using JVMGYM.Datos.Interfaces;
 using JVMGYM.Entidades;
 using JVMGYM.Servicio.Dtos.Clientes;
-using JVMGYM.Servicio.Dtos.Membresias;
-using JVMGYM.Servicio.Dtos.Metodos_de_pago;
+using JVMGYM.Servicio.DTOs.Paginación;
 using JVMGYM.Servicio.Interfaces;
 using JVMGYM.Servicio.Mapeadores;
-namespace JVMGYM.Servicio
+namespace JVMGYM.Servicio.Servicios
 {
     public class ClientesServicio : IClientesServicio
     {
@@ -79,7 +78,7 @@ namespace JVMGYM.Servicio
                 throw new ArgumentException("El ID del cliente debe ser un entero mayor a cero.", nameof(id));
             Cliente? cliente = _clienteRepositorio.ObtenerPorId(id);
             if (cliente is null) throw new ArgumentException(nameof(id), $"Id {id} no encontrado");
-            ClienteEditDto clienteEditDto = cliente.ToEditDto();         
+            ClienteEditDto clienteEditDto = cliente.ToEditDto();
             return clienteEditDto;
         }
 
@@ -98,6 +97,22 @@ namespace JVMGYM.Servicio
         public List<ClientesListDto> ObtenerTodos()
         {
             return _clienteRepositorio.ObtenerTodos().Select(c => c.ToListDto()).ToList();
+        }
+
+        public ResultadoPaginacionDto<ClientesListDto> ObtenerPagina(int paginaActual, 
+            int cantidadPorPagina, bool? filtroActivo = null, string? textoBuscar = null)
+        {
+            var resultado = _clienteRepositorio.ObtenerPagina(paginaActual,
+                cantidadPorPagina, filtroActivo, textoBuscar);
+            var listaDto = resultado.lista
+                    .Select(c => c.ToListDto()).ToList();
+            return new ResultadoPaginacionDto<ClientesListDto>
+            {
+                Items = listaDto,
+                TotalRegistros = resultado.cantidadRegistros,
+                CantidadPorPagina = cantidadPorPagina,
+                PaginaActual = paginaActual
+            };
         }
     }
 }

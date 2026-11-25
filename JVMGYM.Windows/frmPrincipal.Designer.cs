@@ -49,34 +49,36 @@
             // 
             // btnClientes
             // 
-            btnClientes.AutoSize = true;
+            btnClientes.AutoSize = false;
             btnClientes.BackColor = Color.MediumSeaGreen;
             btnClientes.Cursor = Cursors.Hand;
             btnClientes.FlatAppearance.BorderSize = 0;
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClientes.ForeColor = Color.White;
-            btnClientes.Location = new Point(40, 182);
+            btnClientes.Location = new Point(40, 197);
             btnClientes.Name = "btnClientes";
             btnClientes.Size = new Size(170, 70);
-            btnClientes.TabIndex = 2;
+            btnClientes.TabIndex = 0;
+            btnClientes.TextAlign = ContentAlignment.MiddleCenter;
             btnClientes.Text = "CLIENTES";
             btnClientes.UseVisualStyleBackColor = false;
             btnClientes.Click += btnClientes_Click;
             // 
             // btnMembresias
             // 
-            btnMembresias.AutoSize = true;
+            btnMembresias.AutoSize = false;
             btnMembresias.BackColor = Color.MediumSeaGreen;
             btnMembresias.Cursor = Cursors.Hand;
             btnMembresias.FlatAppearance.BorderSize = 0;
             btnMembresias.FlatStyle = FlatStyle.Flat;
             btnMembresias.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnMembresias.ForeColor = Color.White;
-            btnMembresias.Location = new Point(40, 285);
+            btnMembresias.Location = new Point(40, 297);
             btnMembresias.Name = "btnMembresias";
             btnMembresias.Size = new Size(170, 70);
-            btnMembresias.TabIndex = 2;
+            btnMembresias.TabIndex = 1;
+            btnMembresias.TextAlign = ContentAlignment.MiddleCenter;
             btnMembresias.Text = "MEMBRESIAS";
             btnMembresias.UseVisualStyleBackColor = false;
             btnMembresias.Click += btnMembresias_Click;
@@ -99,51 +101,54 @@
             // 
             // btnPagos
             // 
-            btnPagos.AutoSize = true;
+            btnPagos.AutoSize = false;
             btnPagos.BackColor = Color.MediumSeaGreen;
             btnPagos.Cursor = Cursors.Hand;
             btnPagos.FlatAppearance.BorderSize = 0;
             btnPagos.FlatStyle = FlatStyle.Flat;
             btnPagos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPagos.ForeColor = Color.White;
-            btnPagos.Location = new Point(40, 603);
+            btnPagos.Location = new Point(40, 597);
             btnPagos.Name = "btnPagos";
             btnPagos.Size = new Size(170, 70);
-            btnPagos.TabIndex = 2;
+            btnPagos.TabIndex = 4;
+            btnPagos.TextAlign = ContentAlignment.MiddleCenter;
             btnPagos.Text = "PAGOS";
             btnPagos.UseVisualStyleBackColor = false;
             btnPagos.Click += btnPagos_Click;
             // 
             // btnMetodosDePago
             // 
-            btnMetodosDePago.AutoSize = true;
+            btnMetodosDePago.AutoSize = false;
             btnMetodosDePago.BackColor = Color.MediumSeaGreen;
             btnMetodosDePago.Cursor = Cursors.Hand;
             btnMetodosDePago.FlatAppearance.BorderSize = 0;
             btnMetodosDePago.FlatStyle = FlatStyle.Flat;
             btnMetodosDePago.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnMetodosDePago.ForeColor = Color.White;
-            btnMetodosDePago.Location = new Point(40, 493);
+            btnMetodosDePago.Location = new Point(40, 497);
             btnMetodosDePago.Name = "btnMetodosDePago";
             btnMetodosDePago.Size = new Size(170, 70);
-            btnMetodosDePago.TabIndex = 2;
+            btnMetodosDePago.TabIndex = 3;
+            btnMetodosDePago.TextAlign = ContentAlignment.MiddleCenter;
             btnMetodosDePago.Text = "METODOS DE\r\nPAGO";
             btnMetodosDePago.UseVisualStyleBackColor = false;
             btnMetodosDePago.Click += btnMetodosDePago_Click;
             // 
             // btnDuracionMembresia
             // 
-            btnDuracionMembresia.AutoSize = true;
+            btnDuracionMembresia.AutoSize = false;
             btnDuracionMembresia.BackColor = Color.MediumSeaGreen;
             btnDuracionMembresia.Cursor = Cursors.Hand;
             btnDuracionMembresia.FlatAppearance.BorderSize = 0;
             btnDuracionMembresia.FlatStyle = FlatStyle.Flat;
             btnDuracionMembresia.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDuracionMembresia.ForeColor = Color.White;
-            btnDuracionMembresia.Location = new Point(40, 376);
+            btnDuracionMembresia.Location = new Point(40, 397);
             btnDuracionMembresia.Name = "btnDuracionMembresia";
             btnDuracionMembresia.Size = new Size(170, 70);
             btnDuracionMembresia.TabIndex = 2;
+            btnDuracionMembresia.TextAlign = ContentAlignment.MiddleCenter;
             btnDuracionMembresia.Text = "DURACION \r\nMEMBRESIAS";
             btnDuracionMembresia.UseVisualStyleBackColor = false;
             btnDuracionMembresia.Click += btnDuracionMembresia_Click;
